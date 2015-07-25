@@ -4,9 +4,9 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>ForwardJS 2015 Angular 2.0 Workshop by Aysegul Yonet</title>
 
-		<meta name="description" content="">
+		<meta name="description" content="ForwardJS 2015 Angular 2.0 Workshop">
 		<meta name="author" content="Aysegul Yonet">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -42,32 +42,140 @@
 			<div class="slides">
 				<!-- Created By -->
 				<section>
-					<h1></h1>
-					<h3></h3>
+					<h1>Introduction to Angular 2.0</h1>
 					<p>
 						<small>Created by <a href="https://www.linkedin.com/in/aysegulyonet" target="_blank">Aysegul Yonet</a> / <a href="http://twitter.com/AysegulYonet" target="_blank">@AysegulYonet</a></small>
+						<br/>
+						<a href="bit.ly/ForwardJS-Angular2" target="_blank">Slides</a>
 					</p>
 				</section>
 				<!-- /Created By -->
-
+				<!-- Data Binding -->
 				<section>
-					<h2></h2>
-					
-					<pre><code data-trim contenteditable>
-
-					</code></pre>
-					<a href="" target="_blank"></a>
-					<aside class="notes">
+					<section>
+					    <h3>Data Binding</h3>
+						<pre><code data-trim contenteditable>
+<!-- Interpolation -->
+<div>Hello, {{name}}!</div>
+						</pre></code>
+						<p><a href="" target="_blank"></a></p>
+						<aside class="notes">
 						
-					</aside>
+						</aside>
+					</section>
+
+					<section>
+						<h2></h2>
+						
+						<pre><code data-trim contenteditable>
+<!-- Property Binding -->
+<div [hidden]="hideMessage">I am a message</div>
+						</code></pre>
+						<a href="" target="_blank"></a>
+						<aside class="notes">
+							
+						</aside>
+						
+					</section>
+					<section>
+					    <h3></h3>
+						<pre><code data-trim>
+<!-- Event Binding -->
+<button (click)="doStuff()">Do Stuff</button>				
+						</pre></code>
+						<p><a href="" target="_blank"></a></p>
+						<aside class="notes">
+						It’s very easy to spot what is binding syntax and what is just a plain old attribute.
+						The [] and () bindings are being tied directly into the component/DOM element properties and events. This means any public DOM event or property can be bound to with no additional coding!
 					
+						</aside>
+					</section>
+					<section>
+					    <h3></h3>
+						<pre><code data-trim>
+<!-- Show DOM property value -->
+<h1>msg.hidden: {{msg.hidden}}</h1>
+
+<!-- Handle DOM onClick event -->
+<button (click)="msg.hidden = !msg.hidden">Toggle Message</button>
+
+<!-- Save a reference to the H2 element as 'msg' -->
+<h2 #msg>I am a name!</h2>
+					
+						</pre></code>
+						<p><a href="http://plnkr.co/edit/ZTKnLy?p=preview" target="_blank">Plunker</a></p>
+						<aside class="notes">
+					
+						</aside>
+					</section>
+					<section>
+					    <h3></h3>
+						<pre><code data-trim>
+<input type="text"  #color (keyup) placeholder="Set color"/>
+<input type="range" min="10" max="300" value="32" #size (input) placeholder="Set size"/>
+<h1 [style.color]="color.value" [style.font-size]="size.value + 'px'">
+  Set my color and size!
+</h1>
+						</pre></code>
+						<p><a href="http://embed.plnkr.co/ZbCLxE/preview" target="_blank">Plunker</a></p>
+						<aside class="notes">
+
+
+						</aside>
+					</section>
+					<section>
+					    <h3></h3>
+						<pre><code data-trim>
+<!-- Bubbling Event Binding -->
+<div (^click)="doStuff()">
+   <span>Clicks handled by parent</span>
+</div>			
+						</pre></code>
+						<p><a href="" target="_blank"></a></p>
+						<aside class="notes">
+					
+						</aside>
+					</section>
+					<section>
+					    <h3></h3>
+						<pre><code data-trim>
+<!-- Local Variable -->
+<input type="text" #name />
+<span>{{name.value}}</span>				
+						</pre></code>
+						<p><a href="" target="_blank"></a></p>
+						<aside class="notes">
+						name is just a variable. You can call it ref or anything else. Don't forget the #.
+						</aside>
+					</section>
+					<section>
+					    <h3></h3>
+						<pre><code data-trim>
+<!-- Template Binding (ng-for, ng-if, etc...) -->
+<ul>
+   <li *ng-for="#c of contacts">{{c.name}}</li>
+</ul>			
+						</pre></code>
+						<p><a href="http://victorsavkin.com/post/119943127151/angular-2-template-syntax" target="_blank">Read more!</a></p>
+						<p><a href="https://youtu.be/aHGmj_fqPLE?t=26m10s" target="_blank">Watch!</a></p>
+						<aside class="notes">
+					
+						</aside>
+					</section>
 				</section>
+				<!-- /Data binding -->
+
+
+
+
+
+
 
 				<!-- The End -->
 				<section style="text-align: left;">
 					<h1>THE END</h1>
 					<p>
-						- <a href="" target="_blank">Slides</a><br>
+						- <a href="bit.ly/ForwardJS-Angular2" target="_blank">Slides</a><br>
 						- <a href="http://twitter.com/AysegulYonet" target="_blank">@AysegulYonet</a>
 					</p>
 				</section>

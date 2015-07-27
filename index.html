@@ -64,7 +64,8 @@
 						<li><a href="https://nodejs.org/download/" target="_blank">Node</a></li>
 						<li>http server: npm install -g http-server</li>
 						<!-- Maybe! -->
-						<li><a href="https://github.com/jspm/jspm-cli/wiki/Getting-Started" target="_blank"></a>jspm</li><!-- /Maybe! -->
+						<!-- <li><a href="https://github.com/jspm/jspm-cli/wiki/Getting-Started" target="_blank"></a>jspm</li> -->
+						<!-- /Maybe! -->
 						
 
 					</ul>
@@ -78,11 +79,28 @@
 					<ul>
 						<li>Go through basic concepts and terminology</li>
 						<li>Basic hello world example in ES5 and ES6</li>
+						<li>TypeScript</li>
 						<li>Build an app.</li>
 					</ul>
 					<p><a href="" target="_blank"></a></p>
 					<aside class="notes">
 					Go through the basics before lunch, build something real afternoon. 
+					</aside>
+				</section>
+				<section>
+				    <h3>What's new</h3>
+					<ul>
+						<li class="fragment">Angular 2 is Alpha</li>
+						<li class="fragment">Modern Browsers (IE10/11)</li>
+						<li class="fragment">On mobile: Chrome on Android, iOS 6+, Windows Phone 8+ and Firefox mobile</li>
+						<li class="fragment">AngularJS 2 is already being written in ES6.</li>
+						<li class="fragment">Faster change detection</li>
+						<li class="fragment">Modular</li>
+						<li class="fragment">Simplified the directive API</li>
+					</ul>
+					
+					<aside class="notes">
+					Tracier is used to compile since ES6 is not implemented in browsers yet. No more digest cycle, will use Object.observe in the future. OO is available on Chrome Canary if you Enable Experimental JavaScript flag. You can download as much as you use.
 					</aside>
 				</section>
 				<!-- /intro -->
@@ -98,6 +116,15 @@
 						<p><a href="" target="_blank"></a></p>
 						<aside class="notes">
 						
+						</aside>
+					</section>
+					<section>
+					    <h3></h3>
+					    <img src="images/dataBinding.png" alt="data binding flow">
+					
+						<aside class="notes">
+						Data flows into a component via property bindings, through square brackets. Data flows out of a component via event bindings, through parenthesis.
+						Property and event bindings are the public API of a component. You use them when you instantiate a component in your application.
 						</aside>
 					</section>
 
@@ -211,7 +238,7 @@
 				
 					</aside>
 				</section>
-				<!-- TODO 2 wya binding example-->
+				<!-- TODO 2 way binding example-->
 				<section>
 				    <h3></h3>
 					<pre><code data-trim>
@@ -259,6 +286,22 @@ document.addEventListener('DOMContentLoaded', function() {
 					</aside>
 				</section>
 				<!-- Angular 2 with ES6 -->
+				<section>
+				    <h3>ES6 module syntax</h3>
+					<pre><code data-trim>
+// lib.js
+export function square(x) {
+    return x * x;
+}
+
+// main.js
+import { square } from 'lib';
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
 				<section>
 				    <h3>Components</h3>
 					<pre><code data-trim>
@@ -392,6 +435,169 @@ tsc --watch -m commonjs -t es5 --emitDecoratorMetadata app.ts
 					Install the compiler and watch for changes to compile your ts code to JS.
 					</aside>
 				</section>
+				<section>
+				   
+					<p><a  href="http://www.typescriptlang.org/Playground" target="_blank">TypeScript Playground</a></p>
+					<aside class="notes">
+					You don't have to use everything in TS. if you put public in front of a variable you don't have to bind it to this. 
+					</aside>
+				</section>
+				<section>
+				    <h3>3 basic types in TypeScript</h3>
+					<pre><code data-trim>
+var isDone: boolean = false;
+var lines: number = 42;
+var name: string = "Aysegul";
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+				<section>
+					<pre><code data-trim>
+var notSure: any = 4;
+notSure = "maybe a string instead";
+notSure = false;			
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+				<section>
+				    <h3></h3>
+					<pre><code data-trim>
+// For collections, there are typed arrays and generic arrays
+var list: number[] = [1, 2, 3];
+// Alternatively, using the generic array type
+var list: Array<number> = [1, 2, 3];
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+				<section>
+				    <h3></h3>
+					<pre><code data-trim>
+// "void" is used in the special case of a function returning nothing
+function bigHorribleAlert(): void {
+  alert("I'm a little annoying box!");
+}		
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+				<section>
+				    <h3></h3>
+					<pre><code data-trim>
+var f1 = function(i: number): number { return i * i; }
+// Return type inferred
+var f2 = function(i: number) { return i * i; }
+var f3 = (i: number): number => { return i * i; }
+// Return type inferred
+var f4 = (i: number) => { return i * i; }
+// Return type inferred, one-liner means no return keyword needed
+var f5 = (i: number) =>  i * i;
+	
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				Functions are first class citizens, support the lambda "fat arrow" syntax and use type inference.The following are equivalent, the same signature will be infered by the compiler, and same JavaScript will be emitted.
+					</aside>
+				</section>
+				<section>
+				    <h3></h3>
+					<pre><code data-trim>
+interface Person {
+  name: string;
+  // Optional properties, marked with a "?"
+  age?: number;
+  // And of course functions
+  move(): void;
+}
+					</pre></code>
+					<p><a href="" target="_blank">Angular 2 Docs</a></p>
+					<aside class="notes">
+					Interfaces are structural, anything that has the properties is compliant with the interface.
+					</aside>
+				</section>
+				<section>
+				    <h3>Class</h3>
+					<pre><code data-trim>
+class Point {
+  	// Properties
+    x: number;
+
+    // Constructor 
+    constructor(x: number, public y: number = 0) {
+        this.x = x;
+    }
+
+    // Functions
+    dist() { return Math.sqrt(this.x * this.x + this.y * this.y); }
+
+    // Static members
+    static origin = new Point(0, 0);
+}
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+					Constructor - the public/private keywords in this context will generate the boiler plate code for the property and the initialization in the constructor. In this example, "y" will be defined just like "x" is. Default values are also supported.
+				
+					</aside>
+				</section>
+				<section>
+				    <h3>Inheritance</h3>
+					<pre><code data-trim>
+class Point3D extends Point {
+    constructor(x: number, y: number, public z: number = 0) {
+        super(x, y); // Explicit call to the super class constructor is mandatory
+    }
+    // Overwrite
+    dist() {
+        var d = super.dist();
+        return Math.sqrt(d * d + this.z * this.z);
+    }
+}
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+				<section>
+				    <h3>Modules</h3>
+					<pre><code data-trim>
+module Geometry {
+  export class Square {
+    constructor(public sideLength: number = 0) {
+    }
+    area() {
+      return Math.pow(this.sideLength, 2);
+    }
+  }
+}
+
+var s1 = new Geometry.Square(5);
+
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+				<section>
+				    <h3>Traceur Compiler</h3>
+				
+					<p><a href="https://github.com/google/traceur-compiler/wiki/LanguageFeatures#language-features" target="_blank">Language Features</a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
 				<!-- /Typescript -->
 				<section>
 				    <h3>ng-repeat</h3>
@@ -407,6 +613,50 @@ tsc --watch -m commonjs -t es5 --emitDecoratorMetadata app.ts
 					# creates a new local variable.
 					</aside>
 				</section>
+				<!-- Scopes -->
+				<section>
+				    <h3>What happenned to scope?</h3>
+					<p>"scope" is bound to the directive.</p>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				Having different kinds of scope, like isolated and non-isolated, can easily lead to issues. So it's best to keep things simple and focus on isolated scopes.
+					</aside>
+				</section>
+				<section>
+				    <h3>What you should do in Angular 1.x</h3>
+				    <pre><code data-trim>
+// Instead of doing this:
+app.controller('CatController', function ($scope) {
+  $scope.cats = [];
+});
+
+// Do this:
+app.controller('CatController', function () {
+  this.cats = [];
+});
+				
+					</pre></code>
+					<pre><code data-trim>
+<!-- Then instead of this: -->
+<div ng-controller="CatController">
+  <input type="text" ng-model="cat" />
+</div>
+
+<!-- Do this: -->
+<div ng-controller="CatController as catstagram">
+  <input type="text" ng-model="catstagram.cat" />
+</div>
+				
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+					Use this instead of scope and use controller as syntax. 
+					Using controller as makes it obvious which controller you are accessing in the template when multiple controllers apply to an element.
+					If you are writing your controllers as classes you have easier access to the properties and methods, which will appear on the scope, from inside the controller code.
+					Since there is always a . in the bindings, you don't have to worry about prototypal inheritance masking primitives.
+					</aside>
+				</section>
+				<!-- /Scopes -->
 				<section>
 				    <h3>Including directives</h3>
 					<pre><code data-trim>

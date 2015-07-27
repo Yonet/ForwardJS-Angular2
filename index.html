@@ -46,10 +46,47 @@
 					<p>
 						<small>Created by <a href="https://www.linkedin.com/in/aysegulyonet" target="_blank">Aysegul Yonet</a> / <a href="http://twitter.com/AysegulYonet" target="_blank">@AysegulYonet</a></small>
 						<br/>
-						<a href="bit.ly/ForwardJS-Angular2" target="_blank">Slides</a>
+						<a href="bit.ly/ForwardJS-Angular2" target="_blank">Slides: bit.ly/ForwardJS-Angular2</a>
 					</p>
 				</section>
 				<!-- /Created By -->
+				<!-- intro -->
+				<section>
+				    <h3>Introduce yourself</h3>
+					<ul>
+						<li>Your name</li>
+						<li>How familiar are you with Angular 1.x and 2.0</li>
+						<li>Do you use Directives with Angular 1.x</li>
+					</ul>
+					<ul>
+						<li><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank">Git</a></li>
+						<li>Any text editor like <a href="http://www.sublimetext.com/3" target="_blank">Sublime 3</a>.</li>
+						<li><a href="https://nodejs.org/download/" target="_blank">Node</a></li>
+						<li>http server: npm install -g http-server</li>
+						<!-- Maybe! -->
+						<li><a href="https://github.com/jspm/jspm-cli/wiki/Getting-Started" target="_blank"></a>jspm</li><!-- /Maybe! -->
+						
+
+					</ul>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+				<section>
+				    <h3>Game Plan</h3>
+					<ul>
+						<li>Go through basic concepts and terminology</li>
+						<li>Basic hello world example in ES5 and ES6</li>
+						<li>Build an app.</li>
+					</ul>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+					Go through the basics before lunch, build something real afternoon. 
+					</aside>
+				</section>
+				<!-- /intro -->
+
 				<!-- Data Binding -->
 				<section>
 					<section>
@@ -163,7 +200,144 @@
 						</aside>
 					</section>
 				</section>
+				<section>
+				    <h3>Two way binding</h3>
+				    
+					<pre><code data-trim>
+
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+				<!-- TODO 2 wya binding example-->
+				<section>
+				    <h3></h3>
+					<pre><code data-trim>
+				
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+				<section>
+				    <h3>Recap</h3>
+				    <ul>
+				    	<li class="fragment">Property and event bindings are the public API of a directive.</li>
+				    	<li class="fragment">Data flows into a directive via property bindings.</li>
+				    	<li class="fragment">Data flows out of a directive via event bindings.</li>
+				    	<li class="fragment">You can use property and event bindings to implement two-way bindings.</li>
+				    	<li class="fragment">Angular provides syntax sugar for two-way bindings, interpolation, and passing constants.</li>
+				    </ul>
+
+					<aside class="notes">
+				
+					</aside>
+				</section>
 				<!-- /Data binding -->
+	
+				<!-- TODO -->
+				<!-- Routing -->
+				<!-- /Routing -->
+
+				
+				<!-- TODO -->
+
+				<!-- Angular 2 with ES6 -->
+				<section>
+				    <h3>Components</h3>
+					<pre><code data-trim>
+<todo-list></todo-list>
+<time-picker></time-picker>
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+					Components are small reusable pieces of our UI, so that we can create a whole app without repeating our code.
+					</aside>
+				</section>
+				<section>
+				    <h3></h3>
+					<pre><code data-trim>
+@Component({
+	selector: 'post-list'
+})
+@View({
+	templateUrl:'post-list.html' 
+})
+Class RedditApp {
+	constructor(){
+		this.posts = [];
+	}
+}
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+				<section>
+				    <h3>Annotations</h3>
+					<pre><code data-trim>
+@Component({
+	selector: 'post-list'
+})
+@View({
+	templateUrl:'post-list.html' 
+})
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+					Annotations define how we customize our components.
+					</aside>
+				</section>
+				<section>
+				    <h3>ES 5 Annotations</h3>
+					<pre><code data-trim>
+//Constructor function
+function RedditApp() {...}
+//Annotations is a list attached to function
+RedditApp.annotations = [
+	new Component = ({ selector: 'post-list'})
+	new View = ({templateUrl: 'post-list.html'})
+]
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+
+				<!-- Typescript -->
+				<section>
+				    <h3>TypeScript definition files</h3>
+					<pre><code data-trim>
+npm install -g tsd@^0.6.0
+tsd install angular2 es6-promise rx rx-lite
+					</pre></code>
+					<pre><code data-trim>
+touch app.ts index.html
+					</pre></code>
+					<p><a href="https://github.com/Microsoft/TypeScript-Sublime-Plugin" target="_blank">Sublime Package</a></p>
+					<aside class="notes">
+					Get the type definition files. Create an app.js and index.html files on the same root. Note that you can save any js file with the ts extention and it will work.
+					</aside>
+				</section>
+				<section>
+				    <h4>TypeScript compiler</h4>
+					<pre><code data-trim>
+npm install -g typescript@^1.5.0-beta
+tsc --watch -m commonjs -t es5 --emitDecoratorMetadata app.ts
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+					Install the compiler and watch for changes to compile your ts code to JS.
+					</aside>
+				</section>
+				<!-- /Typescript -->
+
+				<!-- /Angular 2 with ES6 -->
 
 
 

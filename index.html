@@ -244,7 +244,20 @@
 
 				
 				<!-- TODO -->
-
+				<!-- Angular 2 with ES5  -->
+				<section>
+				    <h3></h3>
+					<pre><code data-trim>
+// window.angular is available because the script file attaches the angular property to the window
+document.addEventListener('DOMContentLoaded', function() {
+  angular.bootstrap(AppComponent);
+});				
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+					The main difference between the ES5 and TypeScript versions is the loading of modules
+					</aside>
+				</section>
 				<!-- Angular 2 with ES6 -->
 				<section>
 				    <h3>Components</h3>
@@ -261,12 +274,12 @@
 				    <h3></h3>
 					<pre><code data-trim>
 @Component({
-	selector: 'post-list'
+	selector: 'catstagram'
 })
 @View({
-	templateUrl:'post-list.html' 
+	templateUrl:'posts.html' 
 })
-Class RedditApp {
+Class Catstagram {
 	constructor(){
 		this.posts = [];
 	}
@@ -274,7 +287,38 @@ Class RedditApp {
 					</pre></code>
 					<p><a href="" target="_blank"></a></p>
 					<aside class="notes">
+					Declare reusable UI building blocks for an application.
+					Each Angular component requires a single @Component and at least one @View annotation. The @Component annotation specifies when a component is instantiated, and which properties and hostListeners it binds to.
+					When a component is instantiated, Angular:
+
+creates a shadow DOM for the component.
+loads the selected template into the shadow DOM.
+creates all the injectable objects configured with hostInjector and viewInjector.
+					</aside>
+				</section>
+				<section>
+				    <h3></h3>
+				    <ul>
+				    	<li>selector</li>
+				    	<li>properties</li>
+				    	<li>events</li>
+				    	<li>host</li>
+				    	<li>lifecycle</li>
+				    	<li>hostInjector</li>
+				    	<li>exportAs</li>
+				    	<li>compileChildren</li>
+				    	<li>viewInjector</li>
+				    	<li>changeDetection</li>
+				    </ul>
+					<pre><code data-trim>
 				
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+					When a component is instantiated, Angular creates a change detector, which is responsible for propagating the component's bindings.
+
+					The changeDetection property defines, whether the change detection will be checked every time or only when the component tells it to do so.
+					ViewInjector defines the set of injectable objects that are visible to its view dom children.
 					</aside>
 				</section>
 				<section>
@@ -290,15 +334,16 @@ Class RedditApp {
 					<p><a href="" target="_blank"></a></p>
 					<aside class="notes">
 					Annotations define how we customize our components.
+					Annotations provide the additional information that Angular requires in order to run yourapplication.
 					</aside>
 				</section>
 				<section>
 				    <h3>ES 5 Annotations</h3>
 					<pre><code data-trim>
 //Constructor function
-function RedditApp() {...}
+function Catstagram() {...}
 //Annotations is a list attached to function
-RedditApp.annotations = [
+Catstagram.annotations = [
 	new Component = ({ selector: 'post-list'})
 	new View = ({templateUrl: 'post-list.html'})
 ]
@@ -310,6 +355,18 @@ RedditApp.annotations = [
 				</section>
 
 				<!-- Typescript -->
+				<section>
+				    <h3></h3>
+					<pre><code data-trim>
+				
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				TypeScript supports ES6 module loading syntax. ES6 modules allow for modular loading of JavaScript code. Using ES6 modules you can cherry-pick only what you need for your app.
+
+
+					</aside>
+				</section>
 				<section>
 				    <h3>TypeScript definition files</h3>
 					<pre><code data-trim>
@@ -336,8 +393,68 @@ tsc --watch -m commonjs -t es5 --emitDecoratorMetadata app.ts
 					</aside>
 				</section>
 				<!-- /Typescript -->
+				<section>
+				    <h3>ng-repeat</h3>
+					<pre><code data-trim>
+<ul>
+	<li *ng-for="#cat of cats">
+		{{post.title}} - {{post.likes}}
+	</li>
+</ul>			
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+					# creates a new local variable.
+					</aside>
+				</section>
+				<section>
+				    <h3>Including directives</h3>
+					<pre><code data-trim>
+import {Component, View, bootstrap, NgFor} from 'angular2/angular2';
+...
+@View({
+	template: '<div></div>',
+	directives: [NgFor]
+})
+					</pre></code>
+					
+					<aside class="notes">
+					
+					</aside>
+				</section>
+				<section>
+				    <h3>Services</h3>
+					<pre><code data-trim>
+			
+					</pre></code>
+					<p><a href="https://github.com/Yonet/tsExample/tree/step-2" target="_blank">Step-2</a></p>
+					<aside class="notes">
+					Services are just another class. We use appInjector in our component annotation to include it. 
+				
+					</aside>
+				</section>
 
 				<!-- /Angular 2 with ES6 -->
+
+				<!-- Router -->
+				<section>
+				    <h3>Router</h3>
+					<pre><code data-trim>
+router.config([
+  { 'path': '/', 'component': IndexComp },
+  { 'path': '/user/:id', 'component': UserComp },
+]);
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+				<!-- /Router -->
+				
+				<!-- TODO -->
+				<!-- Observables -->
+				<!-- /Observables -->
 
 
 

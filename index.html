@@ -97,10 +97,12 @@
 						<li class="fragment">Faster change detection</li>
 						<li class="fragment">Modular</li>
 						<li class="fragment">Simplified the directive API</li>
+						<li class="fragment">Better integration with external libraries with <a href="https://www.youtube.com/watch?v=3IqtmUscE_U" target="_blank">Zone.js</a></li>
 					</ul>
 					
 					<aside class="notes">
 					Tracier is used to compile since ES6 is not implemented in browsers yet. No more digest cycle, will use Object.observe in the future. OO is available on Chrome Canary if you Enable Experimental JavaScript flag. You can download as much as you use.
+					Zone allows you to catch the changes outside of Angular by property binding, you don't have to use $scope.apply anymore.
 					</aside>
 				</section>
 				<!-- /intro -->
@@ -302,7 +304,40 @@ import { square } from 'lib';
 				
 					</aside>
 				</section>
+		
 				<section>
+				    <h3>Annotations</h3>
+					<pre><code data-trim>
+@Component({
+	selector: 'post-list'
+})
+@View({
+	templateUrl:'post-list.html' 
+})
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+					Annotations define how we customize our components.
+					Annotations provide the additional information that Angular requires in order to run yourapplication.
+					</aside>
+				</section>
+				<section>
+				    <h3>ES 5 Annotations</h3>
+					<pre><code data-trim>
+//Constructor function
+function Catstagram() {...}
+//Annotations is a list attached to function
+Catstagram.annotations = [
+	new Component = ({ selector: 'post-list'})
+	new View = ({templateUrl: 'post-list.html'})
+]
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+						<section>
 				    <h3>Components</h3>
 					<pre><code data-trim>
 <todo-list></todo-list>
@@ -365,37 +400,178 @@ creates all the injectable objects configured with hostInjector and viewInjector
 					</aside>
 				</section>
 				<section>
-				    <h3>Annotations</h3>
+				    <h3>Life Cycle</h3>
 					<pre><code data-trim>
 @Component({
-	selector: 'post-list'
-})
-@View({
-	templateUrl:'post-list.html' 
+  selector: 'cares-about-changes',
+  properties: ['name', 'likes'],
+  lifecycle: [onChange]
 })
 					</pre></code>
 					<p><a href="" target="_blank"></a></p>
 					<aside class="notes">
-					Annotations define how we customize our components.
-					Annotations provide the additional information that Angular requires in order to run yourapplication.
+					Components have a well-defined lifecycle.
+					This component will be notified when its properties change.
+				
 					</aside>
 				</section>
-				<section>
-				    <h3>ES 5 Annotations</h3>
+				<!-- TODO -->
+				<!-- <section>
+				    <h3>Injectables</h3>
 					<pre><code data-trim>
-//Constructor function
-function Catstagram() {...}
-//Annotations is a list attached to function
-Catstagram.annotations = [
-	new Component = ({ selector: 'post-list'})
-	new View = ({templateUrl: 'post-list.html'})
-]
+@Component({
+  selector: 'catstagram',
+  viewInjector: [ConfAppBackend, Logger]
+})
+class TalksApp {
+  //...
+}
+
+class TalksCmp {
+  constructor(backend:ConfAppBackend) {
+    //...
+  }
+}
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+					n this example, we have the backend and the logger services declared in the root component, which makes them available in the whole application. The talks component injects the backend service. 
+					</aside>
+				</section> -->
+				
+				<!-- TODO -->
+				<section>
+				    <h3>Host Element</h3>
+					<pre><code data-trim>
+@Component({
+  selector: 'trimmed-input',
+  host: {
+    '(input)': 'onChange($event.target.value)',
+    '[value]': 'value'
+  } 
+})
+class TrimmedInput {
+  value: string;
+  onChange(updatedValue: string) {
+    this.value = updatedValue.trim();
+  }
+}
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+					To turn an Angular component into something rendered in the DOM you have to associate an Angular component with a DOM element. We call such elements host elements.
+
+					A component can interact with its host DOM element in the following ways: * It can listen to its events. * It can update its properties. * It can invoke methods on it.
+
+					The component, for instance, listens to the input event using hostListeners, trims the value, and then stores it in a field. Angular will sync up the stored value with the DOM.
+
+					Note, I don’t actually interact with the DOM directly.
+					It allows unit testing most of the behavior of an application without touching the DOM. Such tests are easier to write and understand. In addition, they are significantly faster.
+					It allows running Angular applications in a web worker.
+					</aside>
+				</section>
+				<!-- /Componenets -->
+				<!-- Decorators -->
+				<section>
+				    <h3>Decorators</h3>
+				    <p>Decorators are a proposed standard for ECMAScript 7 by Yehuda Katz, to annotate and modify classes and properties at design time.</p>
+					<p><a href="http://blog.thoughtram.io/angular/2015/05/03/the-difference-between-annotations-and-decorators.html" target="_blank">More info on the difference.</a></p>
+					<aside class="notes">
+					“TypeScript Annotations” and decorators are nearly the same thing. From a consumer perspective we have exactly the same syntax. The only thing that differs is that we don’t have control over how AtScript annotations are added as meta data to our code. Whereas decorators is rather an interface to build something that ends up as annotation. Over a long term, however, we can just focus on decorators, since those are a real proposed standard. AtScript is TypeScript and TypeScript implements decorators.
+					</aside>
+				</section>
+				<!-- /Decorators -->
+
+
+				<section>
+				    <h3>@View</h3>
+				    <p>Describes how the component is rendered on the page.</p>
+					<pre><code data-trim>
+@View({
+  directives: [NgFor, RateButton],
+  templateUrl: 'post.html'
+})
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+					Needs to know 2 things. Directives that are being used and the template itself.
+					</aside>
+				</section>
+
+				<!-- TODO -->
+				<section>
+				    <h3>Directives</h3>
+					<pre><code data-trim>
+<div tooltip="foo">...</div>
+@Directive({
+  selector: '[tooltip]',
+  properties: [
+    'text: tooltip'
+  ],
+  hostListeners: {
+    mouseover: 'show()'
+  }
+})
+class Tooltip {
+  show() {
+    console.log(this.text);
+  }
+}
 					</pre></code>
 					<p><a href="" target="_blank"></a></p>
 					<aside class="notes">
 				
 					</aside>
 				</section>
+				<section>
+				    <h3>Angular 1</h3>
+					<pre><code data-trim>
+angular.module('app')
+  .directive('tooltip', function() {
+    restrict: 'A',
+    scope: {
+      text: '@tooltip'
+    },
+    link: function(scope, element, attrs) {
+      element.on('mouseover', function() {
+        console.log(scope.text);
+      });
+    }
+  });
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+				<section>
+				    <h3></h3>
+					<ul>
+						<li class="fragment">A component knows how to interact with its host element.</li>
+						<li class="fragment">A component knows how to render itself, so it knows its view.</li>
+						<li class="fragment">A component configures dependency injection.</li>
+						<li class="fragment">A component has a well-defined public API of property and event bindings.</li>
+					</ul>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+				<!-- DI -->
+				<section>
+				    <h3>Dependency Injections</h3>
+					<pre><code data-trim>
+class PostList {
+  constructor(elRef:ElementRef, backend:CatstagramAppBackend) {
+  }
+}
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+					Angular 2 provides a single API for injecting dependencies. All of them injected into the component’s constructor.
+					</aside>
+				</section>
+
+				<!-- /DI -->
 
 				<!-- Typescript -->
 				<section>
@@ -613,6 +789,7 @@ var s1 = new Geometry.Square(5);
 					# creates a new local variable.
 					</aside>
 				</section>
+
 				<!-- Scopes -->
 				<section>
 				    <h3>What happenned to scope?</h3>
@@ -672,6 +849,7 @@ import {Component, View, bootstrap, NgFor} from 'angular2/angular2';
 					
 					</aside>
 				</section>
+
 				<section>
 				    <h3>Services</h3>
 					<pre><code data-trim>
@@ -679,19 +857,84 @@ import {Component, View, bootstrap, NgFor} from 'angular2/angular2';
 					</pre></code>
 					<p><a href="https://github.com/Yonet/tsExample/tree/step-2" target="_blank">Step-2</a></p>
 					<aside class="notes">
-					Services are just another class. We use appInjector in our component annotation to include it. 
+					Services are just another class. We use appInjector in our component annotation to include it. No need for annotations for the service class. 
 				
 					</aside>
 				</section>
 
 				<!-- /Angular 2 with ES6 -->
+				<!-- http -->
+				<section>
+				    <h3>Fetch API</h3>
+					<pre><code data-trim>
+
+class GithubNames {
+  getUsers() {
+    return fetch('https://api.github.com/users').then(function(response) {
+      return response.json();
+    });
+  }
+}
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+					ES6 comes with a library called fetch.
+					</aside>
+				</section>
+				<section>
+				    <h3></h3>
+					<pre><code data-trim>
+fetch('http://localhost:3001/sessions/create', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username, password
+      })
+    })
+    .then(status)
+    .then(json)
+    .then((response) => {
+      // Once we get the JWT in the response, we save it into localStorage
+      localStorage.setItem('jwt', response.id_token);
+      // and then we redirect the user to the home
+      this.router.parent.navigate('/home');
+    })
+    .catch((error) => {
+      alert(error.message);
+      console.log(error.message);
+    });
+  }
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+				<!-- TODO -->
+				<section>
+				    <h3>$http</h3>
+					<pre><code data-trim>
+				
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+
+				<!-- http -->
 
 				<!-- Router -->
 				<section>
 				    <h3>Router</h3>
 					<pre><code data-trim>
+
+
 router.config([
-  { 'path': '/', 'component': IndexComp },
+  { 'path': '/', 'component': MainComp },
   { 'path': '/user/:id', 'component': UserComp },
 ]);
 					</pre></code>
@@ -700,7 +943,37 @@ router.config([
 				
 					</aside>
 				</section>
+				<section>
+				    <h3></h3>
+					<pre><code data-trim>
+<nav class="main-nav">
+  <a [router-link]="['/home']">Home</a>
+  <a [router-link]="['/dashboard']">Dashboard</a>
+  <a [router-link]="['/todo']">Todo</a>
+</nav>
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+				<!-- TODO -->
+		
+				<section>
+				    <h3></h3>
+					<pre><code data-trim>
+// Angular's router injectables services/bindings
+import {routerInjectables} from 'angular2/router';
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
 				<!-- /Router -->
+
+				<!-- Pipes -->
+				<!-- /Pipes -->
 				
 				<!-- TODO -->
 				<!-- Observables -->

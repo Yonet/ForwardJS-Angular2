@@ -46,6 +46,8 @@
 					<p>
 						<small>Created by <a href="https://www.linkedin.com/in/aysegulyonet" target="_blank">Aysegul Yonet</a> / <a href="http://twitter.com/AysegulYonet" target="_blank">@AysegulYonet</a></small>
 						<br/>
+						<small><a href="anniecannons.com" target="_blank">AnnieCannons</a> / aysegul@anniecannons.com</a></small>
+						<br/>
 						<a href="bit.ly/ForwardJS-Angular2" target="_blank">Slides: bit.ly/ForwardJS-Angular2</a>
 					</p>
 				</section>
@@ -63,13 +65,7 @@
 						<li>Any text editor like <a href="http://www.sublimetext.com/3" target="_blank">Sublime 3</a>.</li>
 						<li><a href="https://nodejs.org/download/" target="_blank">Node</a></li>
 						<li>http server: npm install -g http-server</li>
-						<!-- Maybe! -->
-						<!-- <li><a href="https://github.com/jspm/jspm-cli/wiki/Getting-Started" target="_blank"></a>jspm</li> -->
-						<!-- /Maybe! -->
-						
-
 					</ul>
-					<p><a href="" target="_blank"></a></p>
 					<aside class="notes">
 				
 					</aside>
@@ -77,10 +73,10 @@
 				<section>
 				    <h3>Game Plan</h3>
 					<ul>
-						<li>Go through basic concepts and terminology</li>
-						<li>Basic hello world example in ES5 and ES6</li>
-						<li>TypeScript</li>
-						<li>Build an app.</li>
+						<li class="fragment">Go through basic concepts and terminology</li>
+						<li class="fragment">Basic hello world example in ES5 and ES6</li>
+						<li class="fragment">TypeScript</li>
+						<li class="fragment">Build an app.</li>
 					</ul>
 					<p><a href="" target="_blank"></a></p>
 					<aside class="notes">
@@ -109,13 +105,13 @@
 
 				<!-- Data Binding -->
 				<section>
+
 					<section>
 					    <h3>Data Binding</h3>
 						<pre><code data-trim contenteditable>
 <!-- Interpolation -->
 <div>Hello, {{name}}!</div>
 						</pre></code>
-						<p><a href="" target="_blank"></a></p>
 						<aside class="notes">
 						
 						</aside>
@@ -131,7 +127,7 @@
 					</section>
 
 					<section>
-						<h2></h2>
+						<h2>Property binding</h2>
 						
 						<pre><code data-trim contenteditable>
 <!-- Property Binding -->
@@ -144,7 +140,7 @@
 						
 					</section>
 					<section>
-					    <h3></h3>
+					    <h3>Event binding</h3>
 						<pre><code data-trim>
 <!-- Event Binding -->
 <button (click)="doStuff()">Do Stuff</button>				
@@ -154,6 +150,17 @@
 						It’s very easy to spot what is binding syntax and what is just a plain old attribute.
 						The [] and () bindings are being tied directly into the component/DOM element properties and events. This means any public DOM event or property can be bound to with no additional coding!
 					
+						</aside>
+					</section>
+					<section>
+					    <h3>Local variable</h3>
+						<pre><code data-trim>
+<input type="text" #ref>
+<p>{{ref.value}}</p>	
+						</pre></code>
+						<p><a href="" target="_blank"></a></p>
+						<aside class="notes">
+						# creates a local variable. ref refers to the node itself.
 						</aside>
 					</section>
 					<section>
@@ -171,7 +178,7 @@
 						</pre></code>
 						<p><a href="http://plnkr.co/edit/ZTKnLy?p=preview" target="_blank">Plunker</a></p>
 						<aside class="notes">
-					
+						$event is the first argument.
 						</aside>
 					</section>
 					<section>
@@ -199,21 +206,9 @@
 						</pre></code>
 						<p><a href="" target="_blank"></a></p>
 						<aside class="notes">
+						</aside>
+					</section>
 					
-						</aside>
-					</section>
-					<section>
-					    <h3></h3>
-						<pre><code data-trim>
-<!-- Local Variable -->
-<input type="text" #name />
-<span>{{name.value}}</span>				
-						</pre></code>
-						<p><a href="" target="_blank"></a></p>
-						<aside class="notes">
-						name is just a variable. You can call it ref or anything else. Don't forget the #.
-						</aside>
-					</section>
 					<section>
 					    <h3></h3>
 						<pre><code data-trim>
@@ -233,24 +228,25 @@
 				    <h3>Two way binding</h3>
 				    
 					<pre><code data-trim>
-
+<input type="text" [username]="username" (keyup)="username = $event.target.value">
+<p>{{username}}</p>
 					</pre></code>
 					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+				<section>
+				    <h3></h3>
+					<pre><code data-trim>
+<input type="text" [(ng-model)]="username">
+<p>{{username}}</p>
+					</pre></code>
 					<aside class="notes">
 				
 					</aside>
 				</section>
 				<!-- TODO 2 way binding example-->
-				<section>
-				    <h3></h3>
-					<pre><code data-trim>
-				
-					</pre></code>
-					<p><a href="" target="_blank"></a></p>
-					<aside class="notes">
-				
-					</aside>
-				</section>
 				<section>
 				    <h3>Recap</h3>
 				    <ul>
@@ -266,16 +262,16 @@
 					</aside>
 				</section>
 				<!-- /Data binding -->
+
 	
 				<!-- TODO -->
-				<!-- Routing -->
-				<!-- /Routing -->
+
 
 				
 				<!-- TODO -->
 				<!-- Angular 2 with ES5  -->
 				<section>
-				    <h3></h3>
+				    <h3>Bootstrapping</h3>
 					<pre><code data-trim>
 // window.angular is available because the script file attaches the angular property to the window
 document.addEventListener('DOMContentLoaded', function() {
@@ -284,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					</pre></code>
 					<p><a href="" target="_blank"></a></p>
 					<aside class="notes">
-					The main difference between the ES5 and TypeScript versions is the loading of modules
+					The main difference between the ES5 and TypeScript versions is the loading of modules.
 					</aside>
 				</section>
 				<!-- Angular 2 with ES6 -->
@@ -324,17 +320,16 @@ import { square } from 'lib';
 				<section>
 				    <h3>ES 5 Annotations</h3>
 					<pre><code data-trim>
-//Constructor function
+
 function Catstagram() {...}
-//Annotations is a list attached to function
+
 Catstagram.annotations = [
 	new Component = ({ selector: 'post-list'})
 	new View = ({templateUrl: 'post-list.html'})
 ]
 					</pre></code>
-					<p><a href="" target="_blank"></a></p>
 					<aside class="notes">
-				
+					//Constructor function. //Annotations is a list attached to function.
 					</aside>
 				</section>
 						<section>
@@ -363,7 +358,7 @@ Class Catstagram {
 	}
 }
 					</pre></code>
-					<p><a href="" target="_blank"></a></p>
+					<p><a href="https://github.com/Yonet/tsExample/tree/step-0" target="_blank">Step-0</a></p>
 					<aside class="notes">
 					Declare reusable UI building blocks for an application.
 					Each Angular component requires a single @Component and at least one @View annotation. The @Component annotation specifies when a component is instantiated, and which properties and hostListeners it binds to.
@@ -375,25 +370,29 @@ creates all the injectable objects configured with hostInjector and viewInjector
 					</aside>
 				</section>
 				<section>
-				    <h3></h3>
+				    <h3>Component annotation properties</h3>
 				    <ul>
-				    	<li>selector</li>
-				    	<li>properties</li>
-				    	<li>events</li>
-				    	<li>host</li>
-				    	<li>lifecycle</li>
-				    	<li>hostInjector</li>
-				    	<li>exportAs</li>
-				    	<li>compileChildren</li>
-				    	<li>viewInjector</li>
-				    	<li>changeDetection</li>
+				    	<li class="fragment">selector</li>
+				    	<li class="fragment">properties</li>
+				    	<li class="fragment">events</li>
+				    	<li class="fragment">host</li>
+				    	<li class="fragment">lifecycle</li>
+				    	<li class="fragment">hostInjector</li>
+				    	<li class="fragment">exportAs</li>
+				    	<li class="fragment">compileChildren</li>
+				    	<li class="fragment">viewInjector</li>
+				    	<li class="fragment">changeDetection</li>
 				    </ul>
-					<pre><code data-trim>
-				
-					</pre></code>
-					<p><a href="" target="_blank"></a></p>
+					
+					<p class="fragment"><a href="https://github.com/angular/angular/blob/master/modules/angular2/src/core/annotations_impl/annotations.ts" target="_blank">Source Code</a></p>
 					<aside class="notes">
 					When a component is instantiated, Angular creates a change detector, which is responsible for propagating the component's bindings.
+					Properties - Enumerates the set of properties that accept data binding for a directive.
+					Events - Specifiy the events, actions, properties and attributes related to the host element.
+					host - Specifiy the events, actions, properties and attributes related to the host element.
+					lifecycle - Specifies which lifecycle should be notified to the directive.
+					compileChildren - If set to false the compiler does not compile the children of this directive.
+					hostInjector - Defines the set of injectable objects that are visible to a Directive and its light dom children.
 
 					The changeDetection property defines, whether the change detection will be checked every time or only when the component tells it to do so.
 					ViewInjector defines the set of injectable objects that are visible to its view dom children.
@@ -412,7 +411,7 @@ creates all the injectable objects configured with hostInjector and viewInjector
 					<aside class="notes">
 					Components have a well-defined lifecycle.
 					This component will be notified when its properties change.
-				
+					
 					</aside>
 				</section>
 				<!-- TODO -->
@@ -489,16 +488,32 @@ class TrimmedInput {
 					<pre><code data-trim>
 @View({
   directives: [NgFor, RateButton],
-  templateUrl: 'post.html'
+  templateUrl: 'post.html',
+  styleUrls: ['style.css']
 })
 					</pre></code>
-					<p><a href="" target="_blank"></a></p>
+					<p><a href="https://github.com/angular/angular/blob/master/modules/angular2/src/core/annotations/decorators.ts" target="_blank">Source Code</a></p>
+					<br>
+					
 					<aside class="notes">
 					Needs to know 2 things. Directives that are being used and the template itself.
 					</aside>
 				</section>
-
-				<!-- TODO -->
+				<section>
+				    <h3>Styles</h3>
+					<pre><code data-trim>
+@View({
+  directives: [NgFor, RateButton],
+  templateUrl: 'post.html',
+  styleUrls: ['style.css']
+})	
+					</pre></code>
+					<p><a href="https://github.com/Yonet/tsExample/tree/step-1" target="_blank">Step-1</a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+				<!-- Directives -->
 				<section>
 				    <h3>Directives</h3>
 					<pre><code data-trim>
@@ -544,6 +559,23 @@ angular.module('app')
 				
 					</aside>
 				</section>
+					<section>
+				    <h3>Including directives</h3>
+					<pre><code data-trim>
+import {Component, View, bootstrap, NgFor} from 'angular2/angular2';
+...
+@View({
+	template: '<div></div>',
+	directives: [NgFor]
+})
+					</pre></code>
+					
+					<aside class="notes">
+					
+					</aside>
+				</section>
+
+				
 				<section>
 				    <h3></h3>
 					<ul>
@@ -556,12 +588,30 @@ angular.module('app')
 				
 					</aside>
 				</section>
+				<!-- /Directives -->
+				<section>
+				    <h3>Services</h3>
+					<pre><code data-trim>
+class DataService(){
+	return [...];
+}
+					</pre></code>
+					
+					<aside class="notes">
+					Services are just another class. We use appInjector in our component annotation to include it. No need for annotations for the service class. 
+				
+					</aside>
+				</section>
 				<!-- DI -->
 				<section>
 				    <h3>Dependency Injections</h3>
 					<pre><code data-trim>
 class PostList {
   constructor(elRef:ElementRef, backend:CatstagramAppBackend) {
+  	this.posts = [];
+  }
+  addTab(post){
+  	this.posts.push(post);
   }
 }
 					</pre></code>
@@ -570,22 +620,26 @@ class PostList {
 					Angular 2 provides a single API for injecting dependencies. All of them injected into the component’s constructor.
 					</aside>
 				</section>
+				<section>
+				    <h3>Accessing parent component</h3>
+					<pre><code data-trim>
+class Post {
+  constructor(@Parent() posts:PostList) {
+    posts.addTab(this) //Method defined in the parent class
+  }
+}
+					</pre></code>
+					<p><a href="https://github.com/Yonet/tsExample/tree/step-2" target="_blank">Step-2</a></p>
+					<aside class="notes">
+					@Parent() is yet another annotation that describes the visibility of a dependency for a directive.
+					this particular annotation gives you access to a parent component dependency, which in our case is <post-list>
+					</aside>
+				</section>
 
 				<!-- /DI -->
 
 				<!-- Typescript -->
-				<section>
-				    <h3></h3>
-					<pre><code data-trim>
 				
-					</pre></code>
-					<p><a href="" target="_blank"></a></p>
-					<aside class="notes">
-				TypeScript supports ES6 module loading syntax. ES6 modules allow for modular loading of JavaScript code. Using ES6 modules you can cherry-pick only what you need for your app.
-
-
-					</aside>
-				</section>
 				<section>
 				    <h3>TypeScript definition files</h3>
 					<pre><code data-trim>
@@ -649,7 +703,6 @@ var list: number[] = [1, 2, 3];
 // Alternatively, using the generic array type
 var list: Array<number> = [1, 2, 3];
 					</pre></code>
-					<p><a href="" target="_blank"></a></p>
 					<aside class="notes">
 				
 					</aside>
@@ -745,6 +798,7 @@ class Point3D extends Point {
 				
 					</aside>
 				</section>
+				<!-- Modules -->
 				<section>
 				    <h3>Modules</h3>
 					<pre><code data-trim>
@@ -766,29 +820,17 @@ var s1 = new Geometry.Square(5);
 				
 					</aside>
 				</section>
+				<!-- /Modules -->
 				<section>
 				    <h3>Traceur Compiler</h3>
 				
 					<p><a href="https://github.com/google/traceur-compiler/wiki/LanguageFeatures#language-features" target="_blank">Language Features</a></p>
 					<aside class="notes">
-				
+					BREAK
 					</aside>
 				</section>
 				<!-- /Typescript -->
-				<section>
-				    <h3>ng-repeat</h3>
-					<pre><code data-trim>
-<ul>
-	<li *ng-for="#cat of cats">
-		{{post.title}} - {{post.likes}}
-	</li>
-</ul>			
-					</pre></code>
-					<p><a href="" target="_blank"></a></p>
-					<aside class="notes">
-					# creates a new local variable.
-					</aside>
-				</section>
+			
 
 				<!-- Scopes -->
 				<section>
@@ -834,33 +876,7 @@ app.controller('CatController', function () {
 					</aside>
 				</section>
 				<!-- /Scopes -->
-				<section>
-				    <h3>Including directives</h3>
-					<pre><code data-trim>
-import {Component, View, bootstrap, NgFor} from 'angular2/angular2';
-...
-@View({
-	template: '<div></div>',
-	directives: [NgFor]
-})
-					</pre></code>
-					
-					<aside class="notes">
-					
-					</aside>
-				</section>
-
-				<section>
-				    <h3>Services</h3>
-					<pre><code data-trim>
 			
-					</pre></code>
-					<p><a href="https://github.com/Yonet/tsExample/tree/step-2" target="_blank">Step-2</a></p>
-					<aside class="notes">
-					Services are just another class. We use appInjector in our component annotation to include it. No need for annotations for the service class. 
-				
-					</aside>
-				</section>
 
 				<!-- /Angular 2 with ES6 -->
 				<!-- http -->
@@ -913,34 +929,227 @@ fetch('http://localhost:3001/sessions/create', {
 				
 					</aside>
 				</section>
-				<!-- TODO -->
+
+				<!-- HTTP -->
 				<section>
 				    <h3>$http</h3>
 					<pre><code data-trim>
-				
+import {Inject} from 'angular2/di';
+import {httpInjectables, Http} from 'angular2/http';
+import {HttpFactory} from 'angular2/src/http/http';
+import {IHttp} from 'angular2/src/http/interfaces';
+...
+bootstrap(App, [httpInjectables]);
+
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+					For a Http request we have to inject at first the httpInjectables in our app.ts bootstrap part.
+					</aside>
+				</section>
+				<section>
+				    <h3></h3>
+					<pre><code data-trim>
+class DataService {
+	constructor(@Inject(HttpFactory) http:Http) {
+		...
+	}
+}
+
+
 					</pre></code>
 					<p><a href="" target="_blank"></a></p>
 					<aside class="notes">
 				
 					</aside>
 				</section>
+				<section>
+				    <h3></h3>
+					<pre><code data-trim>
+class DataService {
+	constructor(@Inject(HttpFactory) http:Http) {
+		this.http = http;
+		this.requestUrl = this.API_URL + this.params;
+	}
+	fetch() {
+		var self = this;
+		return this.http(this.requestUrl);
+	}
+}
 
+					</pre></code>
+					<aside class="notes">
+				
+					</aside>
+				</section>
 				<!-- http -->
 
-				<!-- Router -->
+				<!-- Routing -->
 				<section>
-				    <h3>Router</h3>
+				    <h3>Routing</h3>
 					<pre><code data-trim>
+import { bootstrap } from 'angular2/angular2';
+import { routerInjectables } from 'angular2/router';
 
+... // App is defined here
 
-router.config([
-  { 'path': '/', 'component': MainComp },
-  { 'path': '/user/:id', 'component': UserComp },
-]);
+bootstrap(App, [routerInjectables]);
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+					Bootstrap takes a list of injector bindings as second argument.
+					Passing routerInjectables here basically makes all the bindings application-wide available.
+				
+					</aside>
+				</section>
+				
+				<section>
+				    <h3></h3>
+					<pre><code data-trim>
+import { Component, View } from 'angular2/angular2';
+
+@Component({
+  selector: 'app'
+})
+@View({
+  template: `
+    <nav>
+      <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Blog</li>
+      </ul>
+    </nav>
+    <main>
+      // components go here
+    </main>
+  `
+})
+class App {
+
+}
 					</pre></code>
 					<p><a href="" target="_blank"></a></p>
 					<aside class="notes">
 				
+					</aside>
+				</section>
+				<section>
+				    <h3>Route config</h3>
+					<pre><code data-trim>
+import { Start } from './components/home';
+
+@RouteConfig([
+  { path: '/', component: Home }
+])
+class App {
+
+}
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+					next to routerInjectables, there are other components that the router module exports. One of them is the RouteConfig class which can be used to decorate a component with routing capabilities.
+					</aside>
+				</section>
+				<section>
+				    <h3></h3>
+					<pre><code data-trim>
+@Component({
+  selector: 'home'
+})
+@View({
+  template: '<h1>Home</h1>'
+})
+export class Home {
+
+}
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+				<section>
+				    <h3>Router Outlet</h3>
+					<pre><code data-trim>
+import { RouterOutlet } from 'angular2/router';
+
+@Component({
+  selector: 'app'
+})
+@View({
+  directives: [RouterOutlet],
+  template: `
+    <nav>
+      <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Blog</li>
+      </ul>
+    </nav>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  `
+})
+class App {
+
+}
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+					RO lets us define a place in our template to display the loaded component.
+					</aside>
+				</section>
+				<section>
+				    <h3>router-link</h3>
+					<pre><code data-trim>
+import { RouterOutlet, RouterLink } from 'angular2/router';
+
+@Component({
+  selector: 'app'
+})
+@View({
+  directives: [RouterOutlet, RouterLink],
+  ...
+})
+class App {
+
+}
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+					router-link directive, which allows us to navigate to components. Same as Angular 1.4.
+					</aside>
+				</section>
+				<section>
+				    <h3></h3>
+					<pre><code data-trim>
+<nav>
+  <ul>
+    <li><a router-link="home">Home</a></li>
+    <li><a router-link="about">About</a></li>
+    <li><a router-link="blog">Blog</a></li>
+  </ul>
+</nav>
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+				<section>
+				    <h3></h3>
+					<pre><code data-trim>
+@RouteConfig([
+  { path: '/', component: Home, as 'home'}
+  { path: '/about', component: About, as 'about'}
+  { path: '/blog', component: Blog, as 'blog}
+])
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+					Now the router actually knows for what to generate URLs when using RouterLink. 
 					</aside>
 				</section>
 				<section>
@@ -952,25 +1161,8 @@ router.config([
   <a [router-link]="['/todo']">Todo</a>
 </nav>
 					</pre></code>
-					<p><a href="" target="_blank"></a></p>
-					<aside class="notes">
-				
-					</aside>
 				</section>
-				<!-- TODO -->
-		
-				<section>
-				    <h3></h3>
-					<pre><code data-trim>
-// Angular's router injectables services/bindings
-import {routerInjectables} from 'angular2/router';
-					</pre></code>
-					<p><a href="" target="_blank"></a></p>
-					<aside class="notes">
-				
-					</aside>
-				</section>
-				<!-- /Router -->
+				<!-- /Routing -->
 
 				<!-- Pipes -->
 				<!-- /Pipes -->
@@ -980,7 +1172,20 @@ import {routerInjectables} from 'angular2/router';
 				<!-- /Observables -->
 
 
-
+				<!-- <section>
+				    <h3>More reading...</h3>
+					<ul>
+						<li><a href="http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/" target="_blank">Shadow Dom</a></li>
+						<li><a href="" target="_blank"></a></li>
+						<li><a href="" target="_blank"></a></li>
+						<li><a href="" target="_blank"></a></li>
+						<li><a href="" target="_blank"></a></li>
+					</ul>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section> -->
 
 
 
@@ -995,74 +1200,6 @@ import {routerInjectables} from 'angular2/router';
 				</section>
 				<!-- /The End -->
 
-
-					<!-- <section id="fragments">
-						<h2>Fragments</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
-
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section> -->
-					<!-- <section>
-						<h2>Fragment Styles</h2>
-						<p>There's different types of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment current-visible">current-visible</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
-					</section> -->
-
-				<!-- <section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=slide#/transitions">Slide</a> -
-						<a href="?transition=convex#/transitions">Convex</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a>
-					</p>
-				</section> -->
-
-				
-
-				<!-- <section>
-					<section data-background="#dddddd">
-						<h2>Slide Backgrounds</h2>
-						<p>
-							Set <code>data-background="#dddddd"</code> on a slide to change the background color. All CSS color formats are supported.
-						</p>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
-						<h2>Image Backgrounds</h2>
-						<pre><code>&lt;section data-background="image.png"&gt;</code></pre>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="repeat" data-background-size="100px">
-						<h2>Tiled Backgrounds</h2>
-						<pre><code style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-					</section>
-					<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
-						<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
-							<h2>Video Backgrounds</h2>
-							<pre><code style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
-						</div>
-					</section>
-					<section data-background="http://i.giphy.com/90F8aUepslB84.gif">
-						<h2>... and GIFs!</h2>
-					</section>
-				</section> -->
-
-
-				
 
 			</div>
 

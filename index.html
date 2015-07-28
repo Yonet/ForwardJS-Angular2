@@ -1164,6 +1164,86 @@ class App {
 				</section>
 				<!-- /Routing -->
 
+				<!-- forms -->
+				<section>
+				    <h3>Forms</h3>
+					<pre><code data-trim>
+import {forms, required} from 'angular2/forms';
+@Component({
+  selector: 'my-form'
+})
+@Template({
+  // Form layout is automatic from the structure
+  inline: `<form [form-structure]=”form”></form>`
+  directives: [forms]
+})
+class MyForm {
+	
+}
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+				<section>
+				    <h3>Models</h3>
+					<pre><code data-trim>
+class Address {
+  street: string;
+  city: string;
+  state: string;
+  zip: string;
+  residential: boolean;
+} 
+					</pre></code>
+					<p><a href="" target="_blank"></a></p>
+					<aside class="notes">
+				
+					</aside>
+				</section>
+				<section>
+				    <h3></h3>
+					<pre><code data-trim>
+class MyForm {
+  constructor(fb: FormBuilder) {
+    this.address = new Address();
+
+    
+    this.form = fb.fromModel(address, [
+     
+      {field: 'street', label: 'Street', validator: required},
+      {field: 'city', label: 'City', validator: required},
+      {field: 'state', label: 'State', size: 2, 
+              validator: required},
+      {field: 'zip', label: 'Zip', size: 5, 
+              validator: zipCodeValidator},
+      {field: 'isResidential', type: 'checkbox', 
+              label: 'Is residential'}
+    }, {
+      
+      saveOnUpdate: true,
+      
+      layoutStrategy: materialDesign
+    });
+  }
+}
+function zipCodeValidator(control) {
+  if (! control.value.match(/\d\d\d\d\d(-\d\d\d\d)?/)){
+    return {invalidZipCode: true};
+  }
+}
+					</pre></code>
+					<p><a href="https://angular.io/docs/js/latest/api/forms/FormBuilder-class.html" target="_blank"></a></p>
+					<aside class="notes">
+				Defining a form structure and initializing it using the passed in model.
+				Describe the model field, labels and error handling.
+				Update the model every time an input changes.
+				Allow setting different layout strategies.
+					</aside>
+				</section>
+				
+
 				<!-- Pipes -->
 				<!-- /Pipes -->
 				

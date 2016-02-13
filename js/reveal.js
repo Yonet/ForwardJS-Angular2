@@ -3,7 +3,7 @@
  * http://lab.hakim.se/reveal-js
  * MIT licensed
  *
- * Copyright (C) 2015 Hakim El Hattab, http://hakim.se
+ * Copyright (C) 2016 Hakim El Hattab, http://hakim.se
  */
 (function( root, factory ) {
 	if( typeof define === 'function' && define.amd ) {
@@ -30,7 +30,7 @@
 		VERTICAL_SLIDES_SELECTOR = '.slides>section.present>section',
 		HOME_SLIDE_SELECTOR = '.slides>section:first-of-type',
 
-		// Configuration defaults, can be overridden at initialization time
+	// Configuration defaults, can be overridden at initialization time
 		config = {
 
 			// The "normal" size of the presentation, aspect ratio will be preserved
@@ -92,6 +92,9 @@
 			// Flags if it should be possible to pause the presentation (blackout)
 			pause: true,
 
+			// Flags if speaker notes should be visible to all viewers
+			showNotes: false,
+
 			// Number of milliseconds between automatically proceeding to the
 			// next slide, disabled when set to 0, this value can be overwritten
 			// by using a data-autoslide attribute on your slides
@@ -148,62 +151,62 @@
 
 		},
 
-		// Flags if reveal.js is loaded (has dispatched the 'ready' event)
+	// Flags if reveal.js is loaded (has dispatched the 'ready' event)
 		loaded = false,
 
-		// Flags if the overview mode is currently active
+	// Flags if the overview mode is currently active
 		overview = false,
 
-		// The horizontal and vertical index of the currently active slide
+	// The horizontal and vertical index of the currently active slide
 		indexh,
 		indexv,
 
-		// The previous and current slide HTML elements
+	// The previous and current slide HTML elements
 		previousSlide,
 		currentSlide,
 
 		previousBackground,
 
-		// Slides may hold a data-state attribute which we pick up and apply
-		// as a class to the body. This list contains the combined state of
-		// all current slides.
+	// Slides may hold a data-state attribute which we pick up and apply
+	// as a class to the body. This list contains the combined state of
+	// all current slides.
 		state = [],
 
-		// The current scale of the presentation (see width/height config)
+	// The current scale of the presentation (see width/height config)
 		scale = 1,
 
-		// CSS transform that is currently applied to the slides container,
-		// split into two groups
+	// CSS transform that is currently applied to the slides container,
+	// split into two groups
 		slidesTransform = { layout: '', overview: '' },
 
-		// Cached references to DOM elements
+	// Cached references to DOM elements
 		dom = {},
 
-		// Features supported by the browser, see #checkCapabilities()
+	// Features supported by the browser, see #checkCapabilities()
 		features = {},
 
-		// Client is a mobile device, see #checkCapabilities()
+	// Client is a mobile device, see #checkCapabilities()
 		isMobileDevice,
 
-		// Throttles mouse wheel navigation
+	// Throttles mouse wheel navigation
 		lastMouseWheelStep = 0,
 
-		// Delays updates to the URL due to a Chrome thumbnailer bug
+	// Delays updates to the URL due to a Chrome thumbnailer bug
 		writeURLTimeout = 0,
 
-		// Flags if the interaction event listeners are bound
+	// Flags if the interaction event listeners are bound
 		eventsAreBound = false,
 
-		// The current auto-slide duration
+	// The current auto-slide duration
 		autoSlide = 0,
 
-		// Auto slide properties
+	// Auto slide properties
 		autoSlidePlayer,
 		autoSlideTimeout = 0,
 		autoSlideStartTime = -1,
 		autoSlidePaused = false,
 
-		// Holds information about the currently ongoing touch input
+	// Holds information about the currently ongoing touch input
 		touch = {
 			startX: 0,
 			startY: 0,
@@ -213,7 +216,7 @@
 			threshold: 40
 		},
 
-		// Holds information about the keyboard shortcuts
+	// Holds information about the keyboard shortcuts
 		keyboardShortcuts = {
 			'N  ,  SPACE':			'Next slide',
 			'P':					'Previous slide',
@@ -290,16 +293,16 @@
 	function checkCapabilities() {
 
 		features.transforms3d = 'WebkitPerspective' in document.body.style ||
-								'MozPerspective' in document.body.style ||
-								'msPerspective' in document.body.style ||
-								'OPerspective' in document.body.style ||
-								'perspective' in document.body.style;
+			'MozPerspective' in document.body.style ||
+			'msPerspective' in document.body.style ||
+			'OPerspective' in document.body.style ||
+			'perspective' in document.body.style;
 
 		features.transforms2d = 'WebkitTransform' in document.body.style ||
-								'MozTransform' in document.body.style ||
-								'msTransform' in document.body.style ||
-								'OTransform' in document.body.style ||
-								'transform' in document.body.style;
+			'MozTransform' in document.body.style ||
+			'msTransform' in document.body.style ||
+			'OTransform' in document.body.style ||
+			'transform' in document.body.style;
 
 		features.requestAnimationFrameMethod = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame;
 		features.requestAnimationFrame = typeof features.requestAnimationFrameMethod === 'function';
@@ -316,13 +319,13 @@
 
 	}
 
-    /**
-     * Loads the dependencies of reveal.js. Dependencies are
-     * defined via the configuration option 'dependencies'
-     * and will be loaded prior to starting/binding reveal.js.
-     * Some dependencies may have an 'async' flag, if so they
-     * will load after reveal.js has been started up.
-     */
+	/**
+	 * Loads the dependencies of reveal.js. Dependencies are
+	 * defined via the configuration option 'dependencies'
+	 * and will be loaded prior to starting/binding reveal.js.
+	 * Some dependencies may have an 'async' flag, if so they
+	 * will load after reveal.js has been started up.
+	 */
 	function load() {
 
 		var scripts = [],
@@ -457,13 +460,17 @@
 
 		// Arrow controls
 		createSingletonNode( dom.wrapper, 'aside', 'controls',
-			'<div class="navigate-left"></div>' +
-			'<div class="navigate-right"></div>' +
-			'<div class="navigate-up"></div>' +
-			'<div class="navigate-down"></div>' );
+			'<button class="navigate-left" aria-label="previous slide"></button>' +
+			'<button class="navigate-right" aria-label="next slide"></button>' +
+			'<button class="navigate-up" aria-label="above slide"></button>' +
+			'<button class="navigate-down" aria-label="below slide"></button>' );
 
 		// Slide number
 		dom.slideNumber = createSingletonNode( dom.wrapper, 'div', 'slide-number', '' );
+
+		// Element containing notes that are visible to the audience
+		dom.speakerNotes = createSingletonNode( dom.wrapper, 'div', 'speaker-notes', null );
+		dom.speakerNotes.setAttribute( 'data-prevent-swipe', '' );
 
 		// Overlay graphic which is displayed during the paused mode
 		createSingletonNode( dom.wrapper, 'div', 'pause-overlay', null );
@@ -535,6 +542,19 @@
 		document.body.style.width = pageWidth + 'px';
 		document.body.style.height = pageHeight + 'px';
 
+		// Add each slide's index as attributes on itself, we need these
+		// indices to generate slide numbers below
+		toArray( dom.wrapper.querySelectorAll( HORIZONTAL_SLIDES_SELECTOR ) ).forEach( function( hslide, h ) {
+			hslide.setAttribute( 'data-index-h', h );
+
+			if( hslide.classList.contains( 'stack' ) ) {
+				toArray( hslide.querySelectorAll( 'section' ) ).forEach( function( vslide, v ) {
+					vslide.setAttribute( 'data-index-h', h );
+					vslide.setAttribute( 'data-index-v', v );
+				} );
+			}
+		} );
+
 		// Slide and slide background layout
 		toArray( dom.wrapper.querySelectorAll( SLIDES_SELECTOR ) ).forEach( function( slide ) {
 
@@ -566,6 +586,34 @@
 					background.style.height = ( pageHeight * numberOfPages ) + 'px';
 					background.style.top = -top + 'px';
 					background.style.left = -left + 'px';
+				}
+
+				// Inject notes if `showNotes` is enabled
+				if( config.showNotes ) {
+					var notes = getSlideNotes( slide );
+					if( notes ) {
+						var notesSpacing = 8;
+						var notesElement = document.createElement( 'div' );
+						notesElement.classList.add( 'speaker-notes' );
+						notesElement.classList.add( 'speaker-notes-pdf' );
+						notesElement.innerHTML = notes;
+						notesElement.style.left = ( notesSpacing - left ) + 'px';
+						notesElement.style.bottom = ( notesSpacing - top ) + 'px';
+						notesElement.style.width = ( pageWidth - notesSpacing*2 ) + 'px';
+						slide.appendChild( notesElement );
+					}
+				}
+
+				// Inject slide numbers if `slideNumbers` are enabled
+				if( config.slideNumber ) {
+					var slideNumberH = parseInt( slide.getAttribute( 'data-index-h' ), 10 ) + 1,
+						slideNumberV = parseInt( slide.getAttribute( 'data-index-v' ), 10 ) + 1;
+
+					var numberElement = document.createElement( 'div' );
+					numberElement.classList.add( 'slide-number' );
+					numberElement.classList.add( 'slide-number-pdf' );
+					numberElement.innerHTML = formatSlideNumber( slideNumberH, '.', slideNumberV );
+					background.appendChild( numberElement );
 				}
 			}
 
@@ -735,14 +783,14 @@
 		// the same.
 		if( data.background || data.backgroundColor || data.backgroundImage || data.backgroundVideo || data.backgroundIframe ) {
 			element.setAttribute( 'data-background-hash', data.background +
-															data.backgroundSize +
-															data.backgroundImage +
-															data.backgroundVideo +
-															data.backgroundIframe +
-															data.backgroundColor +
-															data.backgroundRepeat +
-															data.backgroundPosition +
-															data.backgroundTransition );
+				data.backgroundSize +
+				data.backgroundImage +
+				data.backgroundVideo +
+				data.backgroundIframe +
+				data.backgroundColor +
+				data.backgroundRepeat +
+				data.backgroundPosition +
+				data.backgroundTransition );
 		}
 
 		// Additional and optional background properties
@@ -836,6 +884,7 @@
 
 		dom.controls.style.display = config.controls ? 'block' : 'none';
 		dom.progress.style.display = config.progress ? 'block' : 'none';
+		dom.slideNumber.style.display = config.slideNumber && !isPrintingPDF() ? 'block' : 'none';
 
 		if( config.rtl ) {
 			dom.wrapper.classList.add( 'rtl' );
@@ -854,6 +903,13 @@
 		// Exit the paused mode if it was configured off
 		if( config.pause === false ) {
 			resume();
+		}
+
+		if( config.showNotes ) {
+			dom.speakerNotes.classList.add( 'visible' );
+		}
+		else {
+			dom.speakerNotes.classList.remove( 'visible' );
 		}
 
 		if( config.mouseWheel ) {
@@ -1410,12 +1466,12 @@
 
 		dom.overlay.innerHTML = [
 			'<header>',
-				'<a class="close" href="#"><span class="icon"></span></a>',
-				'<a class="external" href="'+ url +'" target="_blank"><span class="icon"></span></a>',
+			'<a class="close" href="#"><span class="icon"></span></a>',
+			'<a class="external" href="'+ url +'" target="_blank"><span class="icon"></span></a>',
 			'</header>',
 			'<div class="spinner"></div>',
 			'<div class="viewport">',
-				'<iframe src="'+ url +'"></iframe>',
+			'<iframe src="'+ url +'"></iframe>',
 			'</div>'
 		].join('');
 
@@ -1463,10 +1519,10 @@
 
 			dom.overlay.innerHTML = [
 				'<header>',
-					'<a class="close" href="#"><span class="icon"></span></a>',
+				'<a class="close" href="#"><span class="icon"></span></a>',
 				'</header>',
 				'<div class="viewport">',
-					'<div class="viewport-inner">'+ html +'</div>',
+				'<div class="viewport-inner">'+ html +'</div>',
 				'</div>'
 			].join('');
 
@@ -1530,13 +1586,20 @@
 				transformSlides( { layout: '' } );
 			}
 			else {
-				// Prefer zooming in desktop Chrome so that content remains crisp
-				if( !isMobileDevice && /chrome/i.test( navigator.userAgent ) && typeof dom.slides.style.zoom !== 'undefined' ) {
+				// Use zoom to scale up in desktop Chrome so that content
+				// remains crisp. We don't use zoom to scale down since that
+				// can lead to shifts in text layout/line breaks.
+				if( scale > 1 && !isMobileDevice && /chrome/i.test( navigator.userAgent ) && typeof dom.slides.style.zoom !== 'undefined' ) {
 					dom.slides.style.zoom = scale;
+					dom.slides.style.left = '';
+					dom.slides.style.top = '';
+					dom.slides.style.bottom = '';
+					dom.slides.style.right = '';
 					transformSlides( { layout: '' } );
 				}
 				// Apply scale transform as a fallback
 				else {
+					dom.slides.style.zoom = '';
 					dom.slides.style.left = '50%';
 					dom.slides.style.top = '50%';
 					dom.slides.style.bottom = 'auto';
@@ -1915,10 +1978,10 @@
 
 		// Check which implementation is available
 		var requestMethod = element.requestFullScreen ||
-							element.webkitRequestFullscreen ||
-							element.webkitRequestFullScreen ||
-							element.mozRequestFullScreen ||
-							element.msRequestFullscreen;
+			element.webkitRequestFullscreen ||
+			element.webkitRequestFullScreen ||
+			element.mozRequestFullScreen ||
+			element.msRequestFullscreen;
 
 		if( requestMethod ) {
 			requestMethod.apply( element );
@@ -2154,6 +2217,7 @@
 		updateBackground();
 		updateParallax();
 		updateSlideNumber();
+		updateNotes();
 
 		// Update the URL hash
 		writeURL();
@@ -2195,6 +2259,7 @@
 		updateBackground( true );
 		updateSlideNumber();
 		updateSlidesVisibility();
+		updateNotes();
 
 		formatEmbeddedContent();
 		startEmbeddedContent( currentSlide );
@@ -2444,6 +2509,22 @@
 	}
 
 	/**
+	 * Pick up notes from the current slide and display tham
+	 * to the viewer.
+	 *
+	 * @see `showNotes` config value
+	 */
+	function updateNotes() {
+
+		if( config.showNotes && dom.speakerNotes && currentSlide && !isPrintingPDF() ) {
+
+			dom.speakerNotes.innerHTML = getSlideNotes() || '';
+
+		}
+
+	}
+
+	/**
 	 * Updates the progress bar to reflect the current slide.
 	 */
 	function updateProgress() {
@@ -2460,30 +2541,59 @@
 	/**
 	 * Updates the slide number div to reflect the current slide.
 	 *
-	 * Slide number format can be defined as a string using the
-	 * following variables:
-	 *  h: current slide's horizontal index
-	 *  v: current slide's vertical index
-	 *  c: current slide index (flattened)
-	 *  t: total number of slides (flattened)
+	 * The following slide number formats are available:
+	 *  "h.v": 	horizontal . vertical slide number (default)
+	 *  "h/v": 	horizontal / vertical slide number
+	 *    "c": 	flattened slide number
+	 *  "c/t": 	flattened slide number / total slides
 	 */
 	function updateSlideNumber() {
 
 		// Update slide number if enabled
-		if( config.slideNumber && dom.slideNumber) {
+		if( config.slideNumber && dom.slideNumber ) {
 
-			// Default to only showing the current slide number
-			var format = 'c';
+			var value = [];
+			var format = 'h.v';
 
-			// Check if a custom slide number format is available
+			// Check if a custom number format is available
 			if( typeof config.slideNumber === 'string' ) {
 				format = config.slideNumber;
 			}
 
-			dom.slideNumber.innerHTML = format.replace( /h/g, indexh )
-												.replace( /v/g, indexv )
-												.replace( /c/g, getSlidePastCount() + 1 )
-												.replace( /t/g, getTotalSlides() );
+			switch( format ) {
+				case 'c':
+					value.push( getSlidePastCount() + 1 );
+					break;
+				case 'c/t':
+					value.push( getSlidePastCount() + 1, '/', getTotalSlides() );
+					break;
+				case 'h/v':
+					value.push( indexh + 1 );
+					if( isVerticalSlide() ) value.push( '/', indexv + 1 );
+					break;
+				default:
+					value.push( indexh + 1 );
+					if( isVerticalSlide() ) value.push( '.', indexv + 1 );
+			}
+
+			dom.slideNumber.innerHTML = formatSlideNumber( value[0], value[1], value[2] );
+		}
+
+	}
+
+	/**
+	 * Applies HTML formatting to a slide number before it's
+	 * written to the DOM.
+	 */
+	function formatSlideNumber( a, delimiter, b ) {
+
+		if( typeof b === 'number' && !isNaN( b ) ) {
+			return  '<span class="slide-number-a">'+ a +'</span>' +
+				'<span class="slide-number-delimiter">'+ delimiter +'</span>' +
+				'<span class="slide-number-b">'+ b +'</span>';
+		}
+		else {
+			return '<span class="slide-number-a">'+ a +'</span>';
 		}
 
 	}
@@ -2498,10 +2608,10 @@
 
 		// Remove the 'enabled' class from all directions
 		dom.controlsLeft.concat( dom.controlsRight )
-						.concat( dom.controlsUp )
-						.concat( dom.controlsDown )
-						.concat( dom.controlsPrev )
-						.concat( dom.controlsNext ).forEach( function( node ) {
+			.concat( dom.controlsUp )
+			.concat( dom.controlsDown )
+			.concat( dom.controlsPrev )
+			.concat( dom.controlsNext ).forEach( function( node ) {
 			node.classList.remove( 'enabled' );
 			node.classList.remove( 'fragmented' );
 		} );
@@ -2612,7 +2722,7 @@
 			// Start video playback
 			var currentVideo = currentBackground.querySelector( 'video' );
 			if( currentVideo ) {
-				currentVideo.currentTime = 0;
+				if( currentVideo.currentTime > 0 ) currentVideo.currentTime = 0;
 				currentVideo.play();
 			}
 
@@ -2688,7 +2798,7 @@
 				horizontalOffsetMultiplier = config.parallaxBackgroundHorizontal;
 			}
 			else {
-				horizontalOffsetMultiplier = ( backgroundWidth - slideWidth ) / ( horizontalSlideCount-1 );
+				horizontalOffsetMultiplier = horizontalSlideCount > 1 ? ( backgroundWidth - slideWidth ) / ( horizontalSlideCount-1 ) : 0;
 			}
 
 			horizontalOffset = horizontalOffsetMultiplier * indexh * -1;
@@ -2784,11 +2894,11 @@
 				// Iframes
 				else if( backgroundIframe ) {
 					var iframe = document.createElement( 'iframe' );
-						iframe.setAttribute( 'src', backgroundIframe );
-						iframe.style.width  = '100%';
-						iframe.style.height = '100%';
-						iframe.style.maxHeight = '100%';
-						iframe.style.maxWidth = '100%';
+					iframe.setAttribute( 'src', backgroundIframe );
+					iframe.style.width  = '100%';
+					iframe.style.height = '100%';
+					iframe.style.maxHeight = '100%';
+					iframe.style.maxWidth = '100%';
 
 					background.appendChild( iframe );
 				}
@@ -3151,7 +3261,6 @@
 				// Attempt to create a named link based on the slide's ID
 				var id = currentSlide.getAttribute( 'id' );
 				if( id ) {
-					id = id.toLowerCase();
 					id = id.replace( /[^a-zA-Z0-9\-\_\:\.]/g, '' );
 				}
 
@@ -3280,6 +3389,32 @@
 		}
 
 		return horizontalBackground;
+
+	}
+
+	/**
+	 * Retrieves the speaker notes from a slide. Notes can be
+	 * defined in two ways:
+	 * 1. As a data-notes attribute on the slide <section>
+	 * 2. As an <aside class="notes"> inside of the slide
+	 */
+	function getSlideNotes( slide ) {
+
+		// Default to the current slide
+		slide = slide || currentSlide;
+
+		// Notes can be specified via the data-notes attribute...
+		if( slide.hasAttribute( 'data-notes' ) ) {
+			return slide.getAttribute( 'data-notes' );
+		}
+
+		// ... or using an <aside class="notes"> element
+		var notesElement = slide.querySelector( 'aside.notes' );
+		if( notesElement ) {
+			return notesElement.innerHTML;
+		}
+
+		return null;
 
 	}
 
@@ -3705,6 +3840,21 @@
 
 	}
 
+	/**
+	 * Checks if the target element prevents the triggering of
+	 * swipe navigation.
+	 */
+	function isSwipePrevented( target ) {
+
+		while( target && typeof target.hasAttribute === 'function' ) {
+			if( target.hasAttribute( 'data-prevent-swipe' ) ) return true;
+			target = target.parentNode;
+		}
+
+		return false;
+
+	}
+
 
 	// --------------------------------------------------------------------//
 	// ----------------------------- EVENTS -------------------------------//
@@ -3764,8 +3914,20 @@
 		// keyboard modifier key is present
 		if( activeElementIsCE || activeElementIsInput || (event.shiftKey && event.keyCode !== 32) || event.altKey || event.ctrlKey || event.metaKey ) return;
 
-		// While paused only allow "unpausing" keyboard events (b and .)
-		if( isPaused() && [66,190,191].indexOf( event.keyCode ) === -1 ) {
+		// While paused only allow resume keyboard events; 'b', '.''
+		var resumeKeyCodes = [66,190,191];
+		var key;
+
+		// Custom key bindings for togglePause should be able to resume
+		if( typeof config.keyboard === 'object' ) {
+			for( key in config.keyboard ) {
+				if( config.keyboard[key] === 'togglePause' ) {
+					resumeKeyCodes.push( parseInt( key, 10 ) );
+				}
+			}
+		}
+
+		if( isPaused() && resumeKeyCodes.indexOf( event.keyCode ) === -1 ) {
 			return false;
 		}
 
@@ -3774,7 +3936,7 @@
 		// 1. User defined key bindings
 		if( typeof config.keyboard === 'object' ) {
 
-			for( var key in config.keyboard ) {
+			for( key in config.keyboard ) {
 
 				// Check if this binding matches the pressed key
 				if( parseInt( key, 10 ) === event.keyCode ) {
@@ -3866,6 +4028,8 @@
 	 */
 	function onTouchStart( event ) {
 
+		if( isSwipePrevented( event.target ) ) return true;
+
 		touch.startX = event.touches[0].clientX;
 		touch.startY = event.touches[0].clientY;
 		touch.startCount = event.touches.length;
@@ -3888,6 +4052,8 @@
 	 * Handler for the 'touchmove' event.
 	 */
 	function onTouchMove( event ) {
+
+		if( isSwipePrevented( event.target ) ) return true;
 
 		// Each touch should only trigger one action
 		if( !touch.captured ) {
@@ -4095,8 +4261,8 @@
 	function onPageVisibilityChange( event ) {
 
 		var isHidden =  document.webkitHidden ||
-						document.msHidden ||
-						document.hidden;
+			document.msHidden ||
+			document.hidden;
 
 		// If, after clicking a link or similar and we're coming back,
 		// focus the document.body to ensure we can use keyboard shortcuts
@@ -4421,6 +4587,9 @@
 
 		// Returns the slide background element at the specified index
 		getSlideBackground: getSlideBackground,
+
+		// Returns the speaker notes string for a slide, or null
+		getSlideNotes: getSlideNotes,
 
 		// Returns the previous slide element, may be null
 		getPreviousSlide: function() {

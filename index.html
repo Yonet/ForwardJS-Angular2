@@ -190,7 +190,7 @@ notSure = false;
 // For collections, there are typed arrays and generic arrays
 var list: number[] = [1, 2, 3];
 // Alternatively, using the generic array type
-var list: Array<number> = [1, 2, 3];
+var list: Array&lt;number> = [1, 2, 3];
                     </code></pre>
             <aside class="notes">
 
@@ -1166,11 +1166,10 @@ import {ListsService} from '../listService.ts'
         <section>
             <h3>Routing</h3>
                     <pre><code data-trim>
-                        <!--<head>-->
-                            <!--<script src="node_modules/angular2/bundles/router.dev.js"></script>-->
-                        <!--</head>-->
-                        <!--<base href="/">-->
-
+&lt;head>
+    &lt;script src="node_modules/angular2/bundles/router.dev.js">&lt;/script>
+&lt;/head>
+&lt;base href="/">
                     </code></pre>
 
 					<pre><code data-trim>

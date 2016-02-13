@@ -607,10 +607,10 @@ angular
         <section>
             <h3></h3>
 					<pre><code data-trim>
-                        @Component({
-                        selector: 'catstagram',
-                        templateUrl:'posts.html',
-                        })
+@Component({
+  selector: 'catstagram',
+  templateUrl:'posts.html',
+})
 
                         export Class Catstagram {
                         @Input() data;
@@ -677,196 +677,133 @@ angular
                     target="_blank">Let's create a component</a></p>
 
         </section>
-        <!--<section>-->
-            <!--<h3>Life Cycle</h3>-->
-					<!--<pre><code data-trim>-->
-                        <!--@Component({-->
-                        <!--selector: 'cares-about-changes',-->
-                        <!--properties: ['name', 'likes'],-->
-                        <!--lifecycle: [onChange]-->
-                        <!--})-->
-                    <!--</code></pre>-->
-            <!--<p><a href="" target="_blank"></a></p>-->
-            <!--<aside class="notes">-->
-                <!--Components have a well-defined lifecycle.-->
-                <!--This component will be notified when its properties change.-->
 
-            <!--</aside>-->
-        <!--</section>-->
-        <!-- TODO -->
-        <!-- <section>
-            <h3>Injectables</h3>
-            <pre><code data-trim>
-@Component({
-selector: 'catstagram',
-viewInjector: [ConfAppBackend, Logger]
-})
-class TalksApp {
-//...
-}
-class TalksCmp {
-constructor(backend:ConfAppBackend) {
-//...
-}
-}
-            </pre></code>
-            <p><a href="" target="_blank"></a></p>
+        <section>
+            <h3>Step - 0</h3>
+
+            <a href="https://github.com/Yonet/ng2-forwardJS-app" target="_blank">Github</a>
+
             <aside class="notes">
-            n this example, we have the backend and the logger services declared in the root component, which makes them available in the whole application. The talks component injects the backend service.
+
             </aside>
-        </section> -->
+        </section>
+        <section>
+            <h3>Step - 1</h3>
+					<ul>
+                        <li>app.ts</li>
+                        <li>main.ts</li>
+                    </ul>
+            <a href="https://github.com/Yonet/ng2-forwardJS-app" target="_blank">Github</a>
 
-        <!-- TODO -->
-        <!--<section>-->
-            <!--<h3>Host Element</h3>-->
-					<!--<pre><code data-trim>-->
-                        <!--@Component({-->
-                        <!--selector: 'trimmed-input',-->
-                        <!--host: {-->
-                        <!--'(input)': 'onChange($event.target.value)',-->
-                        <!--'[value]': 'value'-->
-                        <!--}-->
-                        <!--})-->
-                        <!--class TrimmedInput {-->
-                        <!--value: string;-->
-                        <!--onChange(updatedValue: string) {-->
-                        <!--this.value = updatedValue.trim();-->
-                        <!--}-->
-                        <!--}-->
-                    <!--</code></pre>-->
-            <!--<p><a href="" target="_blank"></a></p>-->
-            <!--<aside class="notes">-->
-                <!--To turn an Angular component into something rendered in the DOM you have to associate an Angular-->
-                <!--component with a DOM element. We call such elements host elements.-->
+            <aside class="notes">
 
-                <!--A component can interact with its host DOM element in the following ways: * It can listen to its events.-->
-                <!--* It can update its properties. * It can invoke methods on it.-->
+            </aside>
+        </section>
 
-                <!--The component, for instance, listens to the input event using hostListeners, trims the value, and then-->
-                <!--stores it in a field. Angular will sync up the stored value with the DOM.-->
+        <section>
+            <h3>Step - 2</h3>
+            <pre><code data-trim>
+<input type="text" placeholder="Project name" [(ngModel)]="project.name">
+ <ul>
+   <li>{{ project.name }}</li>
+</ul>
 
-                <!--Note, I don’t actually interact with the DOM directly.-->
-                <!--It allows unit testing most of the behavior of an application without touching the DOM. Such tests are-->
-                <!--easier to write and understand. In addition, they are significantly faster.-->
-                <!--It allows running Angular applications in a web worker.-->
-            <!--</aside>-->
-        <!--</section>-->
-        <!-- /Componenets -->
-        <!-- Decorators -->
-        <!--<section>-->
-            <!--<h3>Decorators</h3>-->
-            <!--<p>Decorators are a proposed standard for ECMAScript 7 by Yehuda Katz, to annotate and modify classes and-->
-                <!--properties at design time.</p>-->
-            <!--<p>-->
-                <!--<a href="http://blog.thoughtram.io/angular/2015/05/03/the-difference-between-annotations-and-decorators.html"-->
-                   <!--target="_blank">More info on the difference.</a></p>-->
-            <!--<aside class="notes">-->
-                <!--“TypeScript Annotations” and decorators are nearly the same thing. From a consumer perspective we have-->
-                <!--exactly the same syntax. The only thing that differs is that we don’t have control over how AtScript-->
-                <!--annotations are added as meta data to our code. Whereas decorators is rather an interface to build-->
-                <!--something that ends up as annotation. Over a long term, however, we can just focus on decorators, since-->
-                <!--those are a real proposed standard. AtScript is TypeScript and TypeScript implements decorators.-->
-            <!--</aside>-->
-        <!--</section>-->
-        <!-- /Decorators -->
+</code></pre>
+
+            <a href="https://github.com/Yonet/ng2-forwardJS-app" target="_blank">Github</a>
+
+            <aside class="notes">
+
+            </aside>
+        </section>
+        <section>
+            <h3></h3>
+					<pre><code data-trim>
+interface Person {
+ name: string;
+ // Optional properties, marked with a "?"
+ age?: number;
+ // And of course functions
+ move(): void;
+}
+                    </code></pre>
+            <p><a href="" target="_blank">Angular 2 Docs</a></p>
+            <aside class="notes">
+                Interfaces are structural, anything that has the properties is compliant with the interface.
+            </aside>
+        </section>
+        <section>
+            <h3></h3>
+					<pre><code data-trim>
+this.project: Project = {
+  id: 1,
+  name: "Demo Project"
+}
+                    </code></pre>
+            <p><a href="" target="_blank">Angular 2 Docs</a></p>
+            <aside class="notes">
+                Interfaces are structural, anything that has the properties is compliant with the interface.
+            </aside>
+        </section>
+        <section>
+            <h3>Step - 3</h3>
+            <ul>
+                <li class="fragment">Add an form and add onSubmit event to add new project</li>
+                <li class="fragment">Use ngFor to repeat the projects in the list</li>
+
+            </ul>
+            <aside class="notes">
+
+            </aside>
+        </section>
 
 
-        <!--<section>-->
-            <!--<h3>@View</h3>-->
-            <!--<p>Describes how the component is rendered on the page.</p>-->
-					<!--<pre><code data-trim>-->
-                        <!--@View({-->
-                        <!--directives: [NgFor, RateButton],-->
-                        <!--templateUrl: 'post.html',-->
-                        <!--styleUrls: ['style.css']-->
-                        <!--})-->
-                    <!--</code></pre>-->
-            <!--<p>-->
-                <!--<a href="https://github.com/angular/angular/blob/master/modules/angular2/src/core/annotations/decorators.ts"-->
-                   <!--target="_blank">Source Code</a></p>-->
-            <!--<br>-->
+        <section>
+            <h3></h3>
+					<pre><code data-trim>
+var PROJECTS: Project[] = [
+ {id: 1, name: "Class Intro"},
+ {id: 2, name: "HTML"},
+ {id: 3, name: "CSS"},
+ {id: 4, name: "JS"},
+ {id: 5, name: "JQuery"},
+ {id: 6, name: "Angular"}
+];
+                    </code></pre>
+            <p><a href="" target="_blank">Angular 2 Docs</a></p>
+            <aside class="notes">
+                Interfaces are structural, anything that has the properties is compliant with the interface.
+            </aside>
+        </section>
 
-            <!--<aside class="notes">-->
-                <!--Needs to know 2 things. Directives that are being used and the template itself.-->
-            <!--</aside>-->
-        <!--</section>-->
-        <!--<section>-->
-            <!--<h3>Styles</h3>-->
-					<!--<pre><code data-trim>-->
-                        <!--@View({-->
-                        <!--directives: [NgFor, RateButton],-->
-                        <!--templateUrl: 'post.html',-->
-                        <!--styleUrls: ['style.css']-->
-                        <!--})-->
-                    <!--</code></pre>-->
-            <!--<p><a href="https://github.com/Yonet/tsExample/tree/step-1" target="_blank">Step-1</a></p>-->
-            <!--<aside class="notes">-->
+        <section>
+            <h3>Add new projects to our list</h3>
+					<pre><code data-trim>
+<form (submit)="onSubmit(projectName.value)">
+ <input type="text" placeholder="Project name" [(ngModel)]="newProject" #projectName>
+</form>
 
-            <!--</aside>-->
-        <!--</section>-->
-        <!-- Directives -->
-        <!--<section>-->
-            <!--<h3>Directives</h3>-->
-					<!--<pre><code data-trim>-->
-                        <!--<div tooltip="foo">...</div>-->
-                        <!--@Directive({-->
-                        <!--selector: '[tooltip]',-->
-                        <!--properties: [-->
-                        <!--'text: tooltip'-->
-                        <!--],-->
-                        <!--hostListeners: {-->
-                        <!--mouseover: 'show()'-->
-                        <!--}-->
-                        <!--})-->
-                        <!--class Tooltip {-->
-                        <!--show() {-->
-                        <!--console.log(this.text);-->
-                        <!--}-->
-                        <!--}-->
-                    <!--</code></pre>-->
-            <!--<p><a href="" target="_blank"></a></p>-->
-            <!--<aside class="notes">-->
+                    </code></pre>
+            <p><a href="" target="_blank">Angular 2 Docs</a></p>
+            <aside class="notes">
+                add the method to the appcomponent
+            </aside>
+        </section>
 
-            <!--</aside>-->
-        <!--</section>-->
-        <!--<section>-->
-            <!--<h3>Angular 1</h3>-->
-					<!--<pre><code data-trim>-->
-                        <!--angular.module('app')-->
-                        <!--.directive('tooltip', function() {-->
-                        <!--restrict: 'A',-->
-                        <!--scope: {-->
-                        <!--text: '@tooltip'-->
-                        <!--},-->
-                        <!--link: function(scope, element, attrs) {-->
-                        <!--element.on('mouseover', function() {-->
-                        <!--console.log(scope.text);-->
-                        <!--});-->
-                        <!--}-->
-                        <!--});-->
-                    <!--</code></pre>-->
-            <!--<p><a href="" target="_blank"></a></p>-->
-            <!--<aside class="notes">-->
+        <section>
+            <h3>Step - 4</h3>
+            <ul>
+                <li class="fragment">Move the data to a service</li>
+                <li class="fragment">Import the service to the component</li>
+                <li class="fragment">Project organization</li>
+                <li class="fragment">ngOnInit</li>
 
-            <!--</aside>-->
-        <!--</section>-->
-        <!--<section>-->
-            <!--<h3>Including directives</h3>-->
-					<!--<pre><code data-trim>-->
-                        <!--import {Component, View, bootstrap, NgFor} from 'angular2/angular2';-->
-                        <!--...-->
-                        <!--@View({-->
-                        <!--template: '-->
-                        <!--<div></div>-->
-                        <!--',-->
-                        <!--directives: [NgFor]-->
-                        <!--})-->
-                    <!--</code></pre>-->
+            </ul>
+            <aside class="notes">
 
-            <!--<aside class="notes">-->
+            </aside>
+        </section>
 
-            <!--</aside>-->
-        <!--</section>-->
 
 
 
@@ -874,9 +811,9 @@ constructor(backend:ConfAppBackend) {
         <section>
             <h3>Services</h3>
 					<pre><code data-trim>
-                        export class DataService(){
-                        return [...];
-                        }
+export class DataService(){
+ return [...];
+}
                     </code></pre>
 
             <aside class="notes">
@@ -891,16 +828,16 @@ constructor(backend:ConfAppBackend) {
 					<pre><code data-trim>
 import {ListsService} from '../listService.ts'
   @Component({
-                            providers: [ListService]
-                        })
-                        class PostList {
-                        constructor(private _listService: ListService) {
-                        this.posts = [];
-                        }
-                        getPosts(){
-                        this._listService.getList();
-                        }
-                        }
+    providers: [ListService]
+})
+class PostList {
+ constructor(private _listService: ListService) {
+  this.posts = [];
+ }
+ getPosts(){
+  this._listService.getList();
+  }
+}
                     </code></pre>
             <p><a href="" target="_blank"></a></p>
             <aside class="notes">
@@ -908,135 +845,127 @@ import {ListsService} from '../listService.ts'
                 constructor.
             </aside>
         </section>
-        <!--<section>-->
-            <!--<h3>Accessing parent component</h3>-->
-					<!--<pre><code data-trim>-->
-                        <!--class Post {-->
-                        <!--constructor(@Parent() posts:PostList) {-->
-                        <!--posts.addTab(this) //Method defined in the parent class-->
-                        <!--}-->
-                        <!--}-->
-                    <!--</code></pre>-->
-            <!--<p><a href="https://github.com/Yonet/tsExample/tree/step-2" target="_blank">Step-2</a></p>-->
-            <!--<aside class="notes">-->
-                <!--@Parent() is yet another annotation that describes the visibility of a dependency for a directive.-->
-                <!--this particular annotation gives you access to a parent component dependency, which in our case is-->
-                <!--<post-list>-->
-            <!--</aside>-->
-        <!--</section>-->
+        <section>
+            <h3>Step - 5</h3>
+            <ul>
+                <li class="fragment">Add promises to our service</li>
+                <li class="fragment">Routes</li>
+
+
+            </ul>
+            <aside class="notes">
+
+            </aside>
+        </section>
+        <!-- Routing -->
+        <section>
+            <h3>Routing</h3>
+                    <pre><code data-trim>
+                        <!--<head>-->
+                        <!--<script src="node_modules/angular2/bundles/router.dev.js"></script>-->
+                        <!--</head>-->
+                        <!--<base href="/">-->
+
+                    </code></pre>
+
+					<pre><code data-trim>
+                        import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
+                    </code></pre>
+            <p><a href="" target="_blank"></a></p>
+            <aside class="notes">
+                <!--<base href="/">-->
+                Most routing applications should add a <base> element just after the <head> tag to tell the router how to compose navigation URLs.
+
+                Bootstrap takes a list of injector bindings as second argument.
+                Passing routerInjectables here basically makes all the bindings application-wide available.
+
+            </aside>
+        </section>
+        <section>
+            <h3>Route config</h3>
+					<pre><code data-trim>
+                        import {HomeComponent, ProjectListComponent, ProjectDetailComponent}
+                        @RouteConfig([
+                        {path:'/home', name: 'Home', component: HomeComponent, useAsDefault: true},
+                        {path:'/projects',        name: 'Projects',       component: ProjectListComponent},
+                        {path:'/project/:id',      name: 'ProjectDetail',   component: ProjectDetailComponent}
+                        ])
+                    </code></pre>
+            <p><a href="" target="_blank"></a></p>
+            <aside class="notes">
+
+            </aside>
+        </section>
+        <section>
+            <h3></h3>
+					<pre><code data-trim>
+<nav>
+ <a [routerLink]="['Home']">Home</a>
+</nav>
+<router-outlet></router-outlet>
+                    </code></pre>
+            <p><a href="" target="_blank"></a></p>
+            <aside class="notes">
+                next to routerInjectables, there are other components that the router module exports. One of them is the
+                RouteConfig class which can be used to decorate a component with routing capabilities.
+            </aside>
+        </section>
+        <section>
+            <h3></h3>
+					<pre><code data-trim>
+<nav class="main-nav">
+  <a [router-link]="['/home']">Home</a>
+  <a [router-link]="['/dashboard']">Dashboard</a>
+    <a [router-link]="['/todo']">Todo</a>
+</nav>
+                    </code></pre>
+        </section>
+
+        <section>
+            <h3>Step - 6</h3>
+            <ul>
+                <li class="fragment">Route Params</li>
+
+            </ul>
+            <aside class="notes">
+
+            </aside>
+        </section>
+
+        <section>
+            <h3>Step - 7</h3>
+            <ul>
+                <li class="fragment">Emitting Events</li>
+                <li class="fragment">Creating a custom pipe</li>
+                <li class="fragment">Using @Input to pass data</li>
+
+            </ul>
+            <aside class="notes">
+
+            </aside>
+        </section>
+        <section>
+            <h3></h3>
+					<pre><code data-trim>
+export class DonePipe  {
+ transform(v, args) { return v && v.filter((item) => item.status === 'Done'); }
+}
+                    </code></pre>
+        </section>
+
+
 
         <!-- /DI -->
 
         <!-- Typescript -->
 
 
-        <section>
-            <h3></h3>
-					<pre><code data-trim>
-                        interface Person {
-                        name: string;
-                        // Optional properties, marked with a "?"
-                        age?: number;
-                        // And of course functions
-                        move(): void;
-                        }
-                    </code></pre>
-            <p><a href="" target="_blank">Angular 2 Docs</a></p>
-            <aside class="notes">
-                Interfaces are structural, anything that has the properties is compliant with the interface.
-            </aside>
-        </section>
-        <section>
-            <h3>Class</h3>
-					<pre><code data-trim>
-                        class Point {
-                        // Properties
-                        x: number;
-
-                        // Constructor
-                        constructor(x: number, public y: number = 0) {
-                        this.x = x;
-                        }
-
-                        // Functions
-                        dist() { return Math.sqrt(this.x * this.x + this.y * this.y); }
-
-                        // Static members
-                        static origin = new Point(0, 0);
-                        }
-                    </code></pre>
-            <p><a href="" target="_blank"></a></p>
-            <aside class="notes">
-                Constructor - the public/private keywords in this context will generate the boiler plate code for the
-                property and the initialization in the constructor. In this example, "y" will be defined just like "x"
-                is. Default values are also supported.
-
-            </aside>
-        </section>
-        <section>
-            <h3>Inheritance</h3>
-					<pre><code data-trim>
-                        class Point3D extends Point {
-                        constructor(x: number, y: number, public z: number = 0) {
-                        super(x, y); // Explicit call to the super class constructor is mandatory
-                        }
-                        // Overwrite
-                        dist() {
-                        var d = super.dist();
-                        return Math.sqrt(d * d + this.z * this.z);
-                        }
-                        }
-                    </code></pre>
-            <p><a href="" target="_blank"></a></p>
-            <aside class="notes">
-
-            </aside>
-        </section>
-        <!-- Modules -->
-        <!--<section>-->
-            <!--<h3>Modules</h3>-->
-					<!--<pre><code data-trim>-->
-                        <!--module Geometry {-->
-                        <!--export class Square {-->
-                        <!--constructor(public sideLength: number = 0) {-->
-                        <!--}-->
-                        <!--area() {-->
-                        <!--return Math.pow(this.sideLength, 2);-->
-                        <!--}-->
-                        <!--}-->
-                        <!--}-->
-
-                        <!--var s1 = new Geometry.Square(5);-->
-
-                    <!--</code></pre>-->
-            <!--<p><a href="" target="_blank"></a></p>-->
-            <!--<aside class="notes">-->
-
-            <!--</aside>-->
-        <!--</section>-->
-        <!-- /Modules -->
-        <!--<section>-->
-            <!--<h3>Traceur Compiler</h3>-->
-
-            <!--<p><a href="https://github.com/google/traceur-compiler/wiki/LanguageFeatures#language-features"-->
-                  <!--target="_blank">Language Features</a></p>-->
-            <!--<aside class="notes">-->
-                <!--BREAK-->
-            <!--</aside>-->
-        <!--</section>-->
-        <!-- /Typescript -->
 
 
-        <!-- Scopes -->
-        <section>
-            <h3>What happenned to scope?</h3>
-            <p>"scope" is bound to the components</p>
-            <p><a href="" target="_blank"></a></p>
-            <aside class="notes">
-                Having different kinds of scope, like isolated and non-isolated, can easily lead to issues. So it's best
-                to keep things simple and focus on isolated scopes.
-            </aside>
-        </section>
+
+
+
+
         <section>
             <h3>What you should do in Angular 1.x</h3>
 				    <pre><code data-trim>
@@ -1074,6 +1003,16 @@ import {ListsService} from '../listService.ts'
                 primitives.
             </aside>
         </section>
+        <!-- Scopes -->
+        <section>
+            <h3>What happenned to scope?</h3>
+            <p>"scope" is bound to the components</p>
+            <p><a href="" target="_blank"></a></p>
+            <aside class="notes">
+                Having different kinds of scope, like isolated and non-isolated, can easily lead to issues. So it's best
+                to keep things simple and focus on isolated scopes.
+            </aside>
+        </section>
         <!-- /Scopes -->
 
 
@@ -1083,22 +1022,22 @@ import {ListsService} from '../listService.ts'
             <h3>HTTP</h3>
 					<pre><code data-trim>
 
-                        import {Http, HTTP_PROVIDERS} from 'angular2/http';
-                        @Component({
-                        selector: 'http-app',
-                        viewProviders: [HTTP_PROVIDERS],
-                        templateUrl: 'people.html'
-                        })
-                        class PeopleComponent {
-                        constructor(http: Http) {
-                        http.get('people.json')
-                        // Call map on the response observable to get the parsed people object
-                        .map(res => res.json())
-                        // Subscribe to the observable to get the parsed people object and attach it to the
-                        // component
-                        .subscribe(people => this.people = people);
-                        }
-                        }
+import {Http, HTTP_PROVIDERS} from 'angular2/http';
+  @Component({
+    selector: 'http-app',
+    viewProviders: [HTTP_PROVIDERS],
+    templateUrl: 'people.html'
+})
+export class PeopleComponent {
+  constructor(http: Http) {
+  http.get('people.json')
+  // Call map on the response observable to get the parsed people object
+  .map(res => res.json())
+  // Subscribe to the observable to get the parsed people object and attach it to the
+  // component
+  .subscribe(people => this.people = people);
+  }
+}
                     </code></pre>
             <p><a href="" target="_blank"></a></p>
             <aside class="notes">
@@ -1108,23 +1047,6 @@ import {ListsService} from '../listService.ts'
         </section>
 
 
-        <!-- HTTP -->
-        <section>
-            <h3>$http</h3>
-					<pre><code data-trim>
-                        import {Inject} from 'angular2/di';
-                        import {httpInjectables, Http} from 'angular2/http';
-                        import {HttpFactory} from 'angular2/src/http/http';
-                        import {IHttp} from 'angular2/src/http/interfaces';
-                        ...
-                        bootstrap(App, [httpInjectables]);
-
-                    </code></pre>
-            <p><a href="" target="_blank"></a></p>
-            <aside class="notes">
-                For a Http request we have to inject at first the httpInjectables in our app.ts bootstrap part.
-            </aside>
-        </section>
         <!--<section>-->
             <!--<h3></h3>-->
 					<!--<pre><code data-trim>-->
@@ -1162,61 +1084,9 @@ import {ListsService} from '../listService.ts'
         <!--</section>-->
         <!-- http -->
 
-        <!-- Routing -->
-        <section>
-            <h3>Routing</h3>
-                    <pre><code data-trim>
-                        <!--<head>-->
-                            <!--<script src="node_modules/angular2/bundles/router.dev.js"></script>-->
-                        <!--</head>-->
-                        <!--<base href="/">-->
 
-                    </code></pre>
 
-					<pre><code data-trim>
-                        import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
-                    </code></pre>
-            <p><a href="" target="_blank"></a></p>
-            <aside class="notes">
-                <!--<base href="/">-->
-                Most routing applications should add a <base> element just after the <head> tag to tell the router how to compose navigation URLs.
 
-                Bootstrap takes a list of injector bindings as second argument.
-                Passing routerInjectables here basically makes all the bindings application-wide available.
-
-            </aside>
-        </section>
-
-        <section>
-            <h3>Route config</h3>
-					<pre><code data-trim>
-                        import {HomeComponent, ProjectListComponent, ProjectDetailComponent}
-                        @RouteConfig([
-                        {path:'/home', name: 'Home', component: HomeComponent, useAsDefault: true},
-                        {path:'/projects',        name: 'Projects',       component: ProjectListComponent},
-                        {path:'/project/:id',      name: 'ProjectDetail',   component: ProjectDetailComponent}
-                        ])
-                    </code></pre>
-            <p><a href="" target="_blank"></a></p>
-            <aside class="notes">
-
-            </aside>
-        </section>
-        <section>
-            <h3></h3>
-					<pre><code data-trim>
-                        <nav>
-                            <a [routerLink]="['Home']">Home</a>
-                            <a [routerLink]="['Projects']">Projects</a>
-                        </nav>
-                        <router-outlet></router-outlet>
-                    </code></pre>
-            <p><a href="" target="_blank"></a></p>
-            <aside class="notes">
-                next to routerInjectables, there are other components that the router module exports. One of them is the
-                RouteConfig class which can be used to decorate a component with routing capabilities.
-            </aside>
-        </section>
         <!--<section>-->
             <!--<h3></h3>-->
 					<!--<pre><code data-trim>-->
@@ -1306,16 +1176,7 @@ import {ListsService} from '../listService.ts'
                 <!--Now the router actually knows for what to generate URLs when using RouterLink.-->
             <!--</aside>-->
         <!--</section>-->
-        <section>
-            <h3></h3>
-					<pre><code data-trim>
-                        <nav class="main-nav">
-                            <a [router-link]="['/home']">Home</a>
-                            <a [router-link]="['/dashboard']">Dashboard</a>
-                            <a [router-link]="['/todo']">Todo</a>
-                        </nav>
-                    </code></pre>
-        </section>
+
         <!-- /Routing -->
 
         <!-- forms -->
@@ -1342,22 +1203,22 @@ import {ListsService} from '../listService.ts'
 
             <!--</aside>-->
         <!--</section>-->
-        <section>
-            <h3>Models</h3>
-					<pre><code data-trim>
-                        class Address {
-                        street: string;
-                        city: string;
-                        state: string;
-                        zip: string;
-                        residential: boolean;
-                        }
-                    </code></pre>
-            <p><a href="" target="_blank"></a></p>
-            <aside class="notes">
+        <!--<section>-->
+            <!--<h3>Models</h3>-->
+					<!--<pre><code data-trim>-->
+                        <!--class Address {-->
+                        <!--street: string;-->
+                        <!--city: string;-->
+                        <!--state: string;-->
+                        <!--zip: string;-->
+                        <!--residential: boolean;-->
+                        <!--}-->
+                    <!--</code></pre>-->
+            <!--<p><a href="" target="_blank"></a></p>-->
+            <!--<aside class="notes">-->
 
-            </aside>
-        </section>
+            <!--</aside>-->
+        <!--</section>-->
         <!--<section>-->
             <!--<h3></h3>-->
 					<!--<pre><code data-trim>-->

@@ -965,29 +965,18 @@ export class DonePipe  {
         <section>
             <h3>What you should do in Angular 1.x</h3>
 				    <pre><code data-trim>
-                        // Instead of doing this:
-                        app.controller('CatController', function ($scope) {
-                        $scope.cats = [];
-                        });
+// Instead of doing this:
+app.controller('CatController', function ($scope) {
+ $scope.cats = [];
+});
 
-                        // Do this:
-                        app.controller('CatController', function () {
-                        this.cats = [];
-                        });
-
-                    </code></pre>
-					<pre><code data-trim>
-                        <!-- Then instead of this: -->
-                        <div ng-controller="CatController">
-                            <input type="text" ng-model="cat"/>
-                        </div>
-
-                        <!-- Do this: -->
-                        <div ng-controller="CatController as catstagram">
-                            <input type="text" ng-model="catstagram.cat"/>
-                        </div>
+// Do this:
+app.controller('CatController', function () {
+ this.cats = [];
+});
 
                     </code></pre>
+
             <p><a href="" target="_blank"></a></p>
             <aside class="notes">
                 Use this instead of scope and use controller as syntax.

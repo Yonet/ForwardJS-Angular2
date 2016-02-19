@@ -578,26 +578,24 @@ angular
         <section>
             <h3></h3>
 					<pre><code data-trim>
-                        angular
-                        .module('app')
-                        .directive('catstagram', catstagramComponent);
+angular
+  .module('app')
+  .directive('catstagram', catstagramComponent);
 
-                        function catstagramComponent () {
-                        var directive =  {
-                        scope: {
-                        data:'=data'
-                        },
-                        controller:catController,
-                        link: createComponent
-                        }
+    function catstagramComponent () {
+      var directive =  {
+        scope: {
+          data:'=data'
+         },
+         controller:catController,
+         link: createComponent
+      }
 
-                        return directive;
+      return directive;
 
-                        function createComponent () {
-
-                        }
-                        function catController (){...}
-                        }
+      function createComponent () {}
+      function catController (){...}
+}
                     </code></pre>
             <!--<p><a href="https://github.com/Yonet/tsExample/tree/step-0" target="_blank">Plunker</a></p>-->
             <aside class="notes">
@@ -612,12 +610,12 @@ angular
   templateUrl:'posts.html',
 })
 
-                        export Class Catstagram {
-                        @Input() data;
-                        constructor(){
-                        this.posts = this.data;
-                        }
-                        }
+export Class Catstagram {
+ @Input() data;
+ constructor(){
+  this.posts = this.data;
+ }
+}
                     </code></pre>
             <!--<p><a href="https://github.com/Yonet/tsExample/tree/step-0" target="_blank">Plunker</a></p>-->
             <aside class="notes">
@@ -857,20 +855,19 @@ class PostList {
         <section>
             <h3>Routing</h3>
                     <pre><code data-trim>
-                        <!--<head>-->
-                        <!--<script src="node_modules/angular2/bundles/router.dev.js"></script>-->
-                        <!--</head>-->
-                        <!--<base href="/">-->
-
+&lt;head>
+  &lt;script src="node_modules/angular2/bundles/router.dev.js">&lt;/script>
+&lt;/head>
+&lt;base href="/">
                     </code></pre>
 
 					<pre><code data-trim>
-                        import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
+import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
                     </code></pre>
             <p><a href="" target="_blank"></a></p>
             <aside class="notes">
                 <!--<base href="/">-->
-                Most routing applications should add a <base> element just after the <head> tag to tell the router how to compose navigation URLs.
+                Most routing applications should add a '<base>' element just after the '<head>' tag to tell the router how to compose navigation URLs.
 
                 Bootstrap takes a list of injector bindings as second argument.
                 Passing routerInjectables here basically makes all the bindings application-wide available.
@@ -949,19 +946,6 @@ export class DonePipe  {
                     </code></pre>
         </section>
 
-
-
-        <!-- /DI -->
-
-        <!-- Typescript -->
-
-
-
-
-
-
-
-
         <section>
             <h3>What you should do in Angular 1.x</h3>
 				    <pre><code data-trim>
@@ -1032,43 +1016,6 @@ export class PeopleComponent {
         </section>
 
 
-        <!--<section>-->
-            <!--<h3></h3>-->
-					<!--<pre><code data-trim>-->
-                        <!--class DataService {-->
-                        <!--constructor(@Inject(HttpFactory) http:Http) {-->
-                        <!--...-->
-                        <!--}-->
-                        <!--}-->
-
-
-                    <!--</code></pre>-->
-            <!--<p><a href="" target="_blank"></a></p>-->
-            <!--<aside class="notes">-->
-
-            <!--</aside>-->
-        <!--</section>-->
-        <!--<section>-->
-            <!--<h3></h3>-->
-					<!--<pre><code data-trim>-->
-                        <!--class DataService {-->
-                        <!--constructor(@Inject(HttpFactory) http:Http) {-->
-                        <!--this.http = http;-->
-                        <!--this.requestUrl = this.API_URL + this.params;-->
-                        <!--}-->
-                        <!--fetch() {-->
-                        <!--var self = this;-->
-                        <!--return this.http(this.requestUrl);-->
-                        <!--}-->
-                        <!--}-->
-
-                    <!--</code></pre>-->
-            <!--<aside class="notes">-->
-
-            <!--</aside>-->
-        <!--</section>-->
-        <!-- http -->
-
         <!-- Routing -->
         <section>
             <h3>Routing</h3>
@@ -1081,186 +1028,13 @@ export class PeopleComponent {
 
 
 
-        <!--<section>-->
-            <!--<h3></h3>-->
-					<!--<pre><code data-trim>-->
-                        <!--@Component({-->
-                        <!--selector: 'home'-->
-                        <!--})-->
-                        <!--@View({-->
-                        <!--template: '<h1>Home</h1>'-->
-                        <!--})-->
-                        <!--export class Home {-->
-
-                        <!--}-->
-                    <!--</code></pre>-->
-            <!--<p><a href="" target="_blank"></a></p>-->
-            <!--<aside class="notes">-->
-
-            <!--</aside>-->
-        <!--</section>-->
-        <!--<section>-->
-            <!--<h3>Router Outlet</h3>-->
-					<!--<pre><code data-trim>-->
-                        <!--import { RouterOutlet } from 'angular2/router';-->
-
-                        <!--@Component({-->
-                        <!--selector: 'app'-->
-                        <!--})-->
-                        <!--@View({-->
-                        <!--directives: [RouterOutlet],-->
-                        <!--template: `-->
-                        <!--<nav>-->
-                            <!--<ul>-->
-                                <!--<li>Home</li>-->
-                                <!--<li>About</li>-->
-                                <!--<li>Blog</li>-->
-                            <!--</ul>-->
-                        <!--</nav>-->
-                        <!--<main>-->
-                            <!--<router-outlet></router-outlet>-->
-                        <!--</main>-->
-                        <!--`-->
-                        <!--})-->
-                        <!--class App {-->
-
-                        <!--}-->
-                    <!--</code></pre>-->
-            <!--<p><a href="" target="_blank"></a></p>-->
-            <!--<aside class="notes">-->
-                <!--RO lets us define a place in our template to display the loaded component.-->
-            <!--</aside>-->
-        <!--</section>-->
-        <!--<section>-->
-            <!--<h3>router-link</h3>-->
-					<!--<pre><code data-trim>-->
-                        <!--import { RouterOutlet, RouterLink } from 'angular2/router';-->
-
-                        <!--@Component({-->
-                        <!--selector: 'app'-->
-                        <!--})-->
-                        <!--@View({-->
-                        <!--directives: [RouterOutlet, RouterLink],-->
-                        <!--...-->
-                        <!--})-->
-                        <!--class App {-->
-
-                        <!--}-->
-                    <!--</code></pre>-->
-            <!--<p><a href="" target="_blank"></a></p>-->
-            <!--<aside class="notes">-->
-                <!--router-link directive, which allows us to navigate to components. Same as Angular 1.4.-->
-            <!--</aside>-->
-        <!--</section>-->
-        <!--<section>-->
-            <!--<h3></h3>-->
-					<!--<pre><code data-trim>-->
-                        <!--import {RouteConfig,Route,routerInjectables, RouterOutlet, RouterLink, HashLocationStrategy,-->
-                        <!--LocationStrategy}-->
-                        <!--@RouteConfig([-->
-                        <!--new Route({ path: '/', component: PostList, as 'home'}),-->
-                        <!--new Route({ path: '/about', component: About, as 'about'}),-->
-                        <!--new Route({ path: '/blog', component: Blog, as 'blog'})-->
-                        <!--])-->
-                        <!--bootstrap(Catstagram, [routerInjectables,-->
-                        <!--bind(LocationStrategy).toClass(HashLocationStrategy)]);-->
-                    <!--</code></pre>-->
-            <!--<p><a href="" target="_blank"></a></p>-->
-            <!--<aside class="notes">-->
-                <!--Now the router actually knows for what to generate URLs when using RouterLink.-->
-            <!--</aside>-->
-        <!--</section>-->
-
-        <!-- /Routing -->
-
-        <!-- forms -->
-        <!--<section>-->
-            <!--<h3>Forms</h3>-->
-					<!--<pre><code data-trim>-->
-                        <!--import {forms, required} from 'angular2/forms';-->
-                        <!--@Component({-->
-                        <!--selector: 'my-form'-->
-                        <!--})-->
-                        <!--@Template({-->
-                        <!--// Form layout is automatic from the structure-->
-                        <!--inline: `-->
-                        <!--<form [form-structure]=”form”></form>-->
-                        <!--`-->
-                        <!--directives: [forms]-->
-                        <!--})-->
-                        <!--class MyForm {-->
-
-                        <!--}-->
-                    <!--</code></pre>-->
-            <!--<p><a href="" target="_blank"></a></p>-->
-            <!--<aside class="notes">-->
-
-            <!--</aside>-->
-        <!--</section>-->
-        <!--<section>-->
-            <!--<h3>Models</h3>-->
-					<!--<pre><code data-trim>-->
-                        <!--class Address {-->
-                        <!--street: string;-->
-                        <!--city: string;-->
-                        <!--state: string;-->
-                        <!--zip: string;-->
-                        <!--residential: boolean;-->
-                        <!--}-->
-                    <!--</code></pre>-->
-            <!--<p><a href="" target="_blank"></a></p>-->
-            <!--<aside class="notes">-->
-
-            <!--</aside>-->
-        <!--</section>-->
-        <!--<section>-->
-            <!--<h3></h3>-->
-					<!--<pre><code data-trim>-->
-                        <!--class MyForm {-->
-                        <!--constructor(fb: FormBuilder) {-->
-                        <!--this.address = new Address();-->
 
 
-                        <!--this.form = fb.fromModel(address, [-->
 
-                        <!--{field: 'street', label: 'Street', validator: required},-->
-                        <!--{field: 'city', label: 'City', validator: required},-->
-                        <!--{field: 'state', label: 'State', size: 2,-->
-                        <!--validator: required},-->
-                        <!--{field: 'zip', label: 'Zip', size: 5,-->
-                        <!--validator: zipCodeValidator},-->
-                        <!--{field: 'isResidential', type: 'checkbox',-->
-                        <!--label: 'Is residential'}-->
-                        <!--}, {-->
-
-                        <!--saveOnUpdate: true,-->
-
-                        <!--layoutStrategy: materialDesign-->
-                        <!--});-->
-                        <!--}-->
-                        <!--}-->
-                        <!--function zipCodeValidator(control) {-->
-                        <!--if (! control.value.match(/\d\d\d\d\d(-\d\d\d\d)?/)){-->
-                        <!--return {invalidZipCode: true};-->
-                        <!--}-->
-                        <!--}-->
-                    <!--</code></pre>-->
-            <!--<p><a href="https://angular.io/docs/js/latest/api/forms/FormBuilder-class.html" target="_blank"></a></p>-->
-            <!--<aside class="notes">-->
-                <!--Defining a form structure and initializing it using the passed in model.-->
-                <!--Describe the model field, labels and error handling.-->
-                <!--Update the model every time an input changes.-->
-                <!--Allow setting different layout strategies.-->
-            <!--</aside>-->
-        <!--</section>-->
-
-
-        <!-- Pipes -->
-        <!-- /Pipes -->
-
-        <!-- TODO -->
+        <!-- TODO Observables, forms, http, further reading-->
         <!-- Observables -->
         <!-- /Observables -->
+
 
 
         <!-- <section>

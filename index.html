@@ -190,7 +190,7 @@ notSure = false;
 // For collections, there are typed arrays and generic arrays
 var list: number[] = [1, 2, 3];
 // Alternatively, using the generic array type
-var list: Array<number> = [1, 2, 3];
+var list: Array&lt;number> = [1, 2, 3];
                     </code></pre>
             <aside class="notes">
 
@@ -1069,6 +1069,15 @@ export class PeopleComponent {
         <!--</section>-->
         <!-- http -->
 
+        <!-- Routing -->
+        <section>
+            <h3>Routing</h3>
+                    <pre><code data-trim>
+&lt;head>
+    &lt;script src="node_modules/angular2/bundles/router.dev.js">&lt;/script>
+&lt;/head>
+&lt;base href="/">
+                    </code></pre>
 
 
 

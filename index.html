@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
 
-    <title>ForwardJS 2016 Angular 2.0 Workshop by Aysegul Yonet</title>
+    <title>Forward5 2016 Angular 2.0 Workshop by Aysegul Yonet</title>
 
-    <meta name="description" content="ForwardJS 2015 Angular 2.0 Workshop">
+    <meta name="description" content="ForwardJS July 2016 Angular 2.0 Workshop">
     <meta name="author" content="Aysegul Yonet">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -47,12 +47,10 @@
             <p>
                 <small>Created by <a href="https://www.linkedin.com/in/aysegulyonet" target="_blank">Aysegul Yonet</a> /
                     <a href="http://twitter.com/AysegulYonet" target="_blank">twitter@AysegulYonet</a></small>
-                <br>
                 <br/>
-                <small><a href="http://www.anniecannons.com" target="_blank">AnnieCannons</a> / aysegul@anniecannons.com</a>
-                </small>
-                <br/>
-                <a href="http://yonet.github.io/ForwardJS-Angular2/#/" target="_blank">Slides: bit.ly/ForwardJS-Angular2</a>
+                <p>
+                    Slides: <a href="http://yonet.github.io/ForwardJS-Angular2/#/" target="_blank">bit.ly/ForwardJS-Angular2</a>
+                </p>
             </p>
         </section>
         <!-- /Created By -->
@@ -60,15 +58,23 @@
 
         <!-- intro -->
         <section>
-            <h3>Introduce yourself</h3>
+            <!-- <h3>Introduce yourself</h3> -->
+
             <ul>
-                <li>Your name</li>
-                <li>Your Angular 1.x and 2.0 experience</li>
-                <li>Did you create custom Directives with Angular 1.x</li>
-            </ul>
-            <ul>
-                <li><a href="https://nodejs.org/download/" target="_blank">Node</a></li>
-                <li><a href="https://github.com/DefinitelyTyped/tsd" target="_blank">npm install tsd -g</a></li>
+                <li>Introduce yourself
+                    <ul>
+                        <li>Your name</li>
+                        <li>Your Angular 1.x and 2.0 experience</li>
+                        <li>Did you create custom Directives with Angular 1.x</li>
+                    </ul>
+                </li>
+                <li><a href="https://nodejs.org/download/" target="_blank">Node</a>
+                    <p>
+                        Verify that you are running at least node v4.x.x and npm 3.x.x by running node -v and npm -v in a terminal/console window. Older versions produce errors.
+                    </p>
+                </li>
+                <li><a href="https://github.com/angular/angular-cli#installation" target="_blank">npm install -g angular-cli</a></li>
+                <!-- <li><a href="https://github.com/DefinitelyTyped/tsd" target="_blank">npm install tsd -g</a></li> -->
                 <!--<li>http server: npm install -g http-server</li>-->
             </ul>
             <aside class="notes">
@@ -76,10 +82,14 @@
             </aside>
         </section>
         <section>
+            <h2>About me</h2>
+
+        </section>
+        <section>
             <h3>The Plan</h3>
             <ul>
-                <li class="fragment">Go through concepts and terminology</li>
-                <li class="fragment">Basic hello world example in ES5 and ES6</li>
+                <li class="fragment">Go through concepts and tools</li>
+                <li class="fragment">Basic hello world example in ES6</li>
                 <li class="fragment">TypeScript</li>
                 <li class="fragment">Build an app</li>
             </ul>
@@ -106,13 +116,13 @@
         <section>
             <h3>What's new</h3>
             <ul>
-                <li class="fragment">Angular 2.0 rc.0</li>
-                <li class="fragment">Modern Browsers (IE9+ and Android 4.1+)</li>
+                <li class="fragment">Angular 2.0 rc.4</li>
+                <li class="fragment">Modern Browsers (IE8+, Android 4.1+)</li>
                 <li class="fragment">Web Workers</li>
                 <li class="fragment">AngularJS 2 is being written in TS/ES6</li>
                 <li class="fragment">Faster change detection</li>
-                <li class="fragment"Modular</li>
-                <li class="fragment">Simplified the directive API</li>
+                <li class="fragment">Modular</li>
+                <li class="fragment">Simplified APIs</li>
                 <li class="fragment">Better integration with external libraries with <a
                         href="https://www.youtube.com/watch?v=3IqtmUscE_U" target="_blank">Zone.js</a></li>
             </ul>
@@ -184,12 +194,41 @@ notSure = false;
             </aside>
         </section>
         <section>
+            <pre><code data-trim>
+export class ProjectType {
+    id: number;
+    name: string;
+    url: string;
+}
+
+            </code></pre>
+            <p><a href="" target="_blank"></a></p>
+            <aside class="notes">
+
+            </aside>
+        </section>
+        <section>
             <h3></h3>
 					<pre><code data-trim>
 // For collections, there are typed arrays and generic arrays
-var list: number[] = [1, 2, 3];
+let list: number[] = [1, 2, 3];
 // Alternatively, using the generic array type
-var list: Array&lt;number> = [1, 2, 3];
+let list: Array&lt;number> = [1, 2, 3];
+let projects: ProjectType[] =
+
+                    </code></pre>
+            <aside class="notes">
+
+            </aside>
+        </section>
+        <section>
+            <h3></h3>
+                    <pre><code data-trim>
+
+let projects: ProjectType[] = [
+    {id: 1, name: 'Demo project', url: '...'}
+]
+
                     </code></pre>
             <aside class="notes">
 
@@ -244,6 +283,48 @@ var f5 = (i: number) => i * i;
                 </aside>
             </section>
             <section>
+				<pre><code data-trim contenteditable>
+function chartDirective () {
+  return {
+    restrict: ‘E’,
+    scope: {
+      data:"parentData"
+    },
+    link: link
+  };
+};
+
+function link () {}
+				</pre></code>
+                <aside class="notes">
+
+                </aside>
+            </section>
+            <section>
+				<pre><code data-trim contenteditable>
+function chartDirective () {
+  return {
+    restrict: ‘E’,
+    scope: {},
+    bindToController: {
+        data:"parentData"
+    }
+    link: link
+  };
+};
+
+function link () {}
+				</pre></code>
+                <pre><code data-trim contenteditable>
+<chart data="parentData"></chart>
+                </code></pre>
+
+                <aside class="notes">
+
+                </aside>
+            </section>
+
+            <section>
                 <h3></h3>
                 <img src="images/dataBinding.png" alt="data binding flow">
 
@@ -258,7 +339,8 @@ var f5 = (i: number) => i * i;
             <section>
                 <h2>Property binding</h2>
 						<pre><code data-trim contenteditable>
-                            <!-- Property Binding -->
+<!-- Property Binding -->
+<chart [data]="parentData"></chart>
 <div [hidden]="hideMessage">I am a message</div>
                         </code></pre>
                 <a href="" target="_blank"></a>
@@ -328,10 +410,11 @@ var f5 = (i: number) => i * i;
   <li *ngFor="let message of messages">{{message}}</li>
 </ul>
                         </code></pre>
-                <p><a href="http://victorsavkin.com/post/119943127151/angular-2-template-syntax" target="_blank">Read
+                <p><a href="https://vsavkin.com/angular-2-template-syntax-5f2ee9f13c6a#.kfk7qrltv" target="_blank">Read
                     more!</a></p>
                 <!--<p><a href="https://youtu.be/aHGmj_fqPLE?t=26m10s" target="_blank">Watch!</a></p>-->
                 <aside class="notes">
+                    ngFor is camelcase
 
                 </aside>
             </section>
@@ -374,6 +457,19 @@ var f5 = (i: number) => i * i;
             <aside class="notes">
 
             </aside>
+        </section>
+        <section>
+            <h2>Exercise</h2>
+            <p>
+                <a href="http://plnkr.co/edit/6LUg2lVj9kAP6cRUSxTj?p=preview" target="_blank">Plunker</a>
+            </p>
+            <ul>
+                <li class="fragment">Open plunker editor</li>
+                <li class="fragment">Create a list of projects</li>
+                <li class="fragment">Repeat the projects using *ngFor</li>
+                <li class="fragment">Create a click event on repeated project to select the clicked item</li>
+                <li class="fragment">Add an input field to add new projects</li>
+            </ul>
         </section>
         <!-- /Data binding -->
 
@@ -636,20 +732,16 @@ export Class Catstagram {
         <section>
             <h3>Component annotation properties</h3>
             <ul>
-                <li class="fragment">selector?: string</li>
-                <li class="fragment">inputs?: string[]</li>
-                <li class="fragment">outputs?: string[]</li>
+                <li class="fragment">selector: string</li>
                 <li class="fragment">providers?: any[]</li>
                 <li class="fragment">templateUrl?: string</li>
                 <li class="fragment">styleUrls?</li>
                 <li class="fragment">directives?: Array<Type | any[]></li>
                 <li class="fragment">pipes?: Array<Type | any[]></li>
-                <li class="fragment">encapsulation?: ViewEncapsulation</li>
-                <li class="fragment">changeDetection?: ChangeDetectionStrategy</li>
             </ul>
 
             <p class="fragment"><a
-                    href="https://angular.io/docs/ts/latest/api/core/ComponentMetadata-class.html"
+                    href="https://angular.io/docs/ts/latest/guide/cheatsheet.html"
                     target="_blank">Documentation</a></p>
             <aside class="notes">
 
@@ -674,11 +766,18 @@ export Class Catstagram {
                     target="_blank">Let's create a component</a></p>
 
         </section>
+            <pre><code data-trim contenteditable>
+ng new forward5-app --style=sass
+            </code></pre>
+
+        <section>
+
+        </section>
 
         <section>
             <h3>Step - 0</h3>
 
-            <a href="https://github.com/Yonet/ng2-forwardJS-app" target="_blank">Github</a>
+            <a href="https://github.com/Yonet/ng2-forward5/tree/step-0" target="_blank">Github</a>
 
             <aside class="notes">
 
@@ -686,10 +785,23 @@ export Class Catstagram {
         </section>
         <section>
             <h3>Step - 1</h3>
-					<ul>
-                        <li>app.ts</li>
-                        <li>main.ts</li>
-                    </ul>
+            <pre><code data-trim contenteditable>
+ng g component lists
+            </code></pre>
+            <!--<a href="https://github.com/Yonet/ng2-forwardJS-app" target="_blank">Github</a>-->
+
+            <aside class="notes">
+
+            </aside>
+        </section>
+        <section>
+            <h3>Step - 2</h3>
+            <p>
+                <a href="https://github.com/angular/angular-cli/wiki/3rd-party-libs" target="_blank">Adding 3rd party libraries</a>
+            <!-- </p> -->
+            <!-- <pre><code data-trim contenteditable>
+ng g component lists
+            </code></pre> -->
             <!--<a href="https://github.com/Yonet/ng2-forwardJS-app" target="_blank">Github</a>-->
 
             <aside class="notes">
@@ -698,6 +810,91 @@ export Class Catstagram {
         </section>
 
         <section>
+            <h2>Life Cycle Hooks</h2>
+            <ul>
+                <li class="fragment">constructor()</li>
+                <li class="fragment">ngOnChanges()</li>
+                <li class="fragment">ngOnInit()</li>
+                <li class="fragment"><a href="#">ngDoCheck()</a></li>
+                <li class="fragment">ngAfterContentInit()</li>
+                <li class="fragment"><a href="#">ngAfterContentChecked()</a></li>
+                <li class="fragment">ngAfterViewInit()</li>
+                <li class="fragment"><a href="#">ngAfterViewChecked()</a></li>
+                <li class="fragment">ngOnDestroy()</li>
+            </ul>
+            <aside class="notes">
+                ngOnChanges, when input changes
+                init, do the initial work here
+                doCheck, after init, when every change detection runs
+                viewInit, component and child components are initialized
+            </aside>
+        </section>
+
+        <section>
+            <h2>@Input</h2>
+            <pre><code data-trim>
+<child [data]="dataValue"></child>
+            </code></pre>
+            <pre><code data-trim>
+@Component({
+    selector:'child',
+    template:'<p>{{data}}</p>'
+})
+export class ChildComponent {
+    @Input() data;
+}
+            </code></pre>
+            <aside class="notes">
+                if data is primitive, when it changes the change detection runs
+                if it is a reference, array, object,..., it will only run when the reference changes
+            </aside>
+
+        </section>
+        <section>
+            <h2>@Output</h2>
+            <pre><code data-trim>
+<child [data]="dataValue"></child>
+            </code></pre>
+            <pre><code data-trim>
+@Component({
+    selector:'parent',
+    template:'<child (childEvent)="onChildEvent($event)"></child>'
+})
+export class ParentComponent {
+    onChildEvent(ev){
+        console.log('Event fired',ev);
+    }
+}
+            </code></pre>
+            <aside class="notes">
+                if data is primitive, when it changes the change detection runs
+                if it is a reference, array, object,..., it will only run when the reference changes
+            </aside>
+
+        </section>
+        <section>
+            <h2>@Input</h2>
+            <pre><code data-trim>
+<child [data]="dataValue"></child>
+            </code></pre>
+            <pre><code data-trim>
+@Component({
+    selector:'child',
+    template:'<button (click)='onClick()'></button>'
+})
+export class ChildComponent {
+    @Output childEvent = new EventEmitter();
+
+    onClick(){
+        this.childEvent.emit('hello!');
+    }
+}
+            </code></pre>
+            <aside class="notes">
+            </aside>
+        </section>
+
+        <!-- <section>
             <h3>Step - 2</h3>
             <pre><code data-trim>
 <input type="text" placeholder="Project name" [(ngModel)]="project.name">
@@ -712,8 +909,8 @@ export Class Catstagram {
             <aside class="notes">
 
             </aside>
-        </section>
-        <section>
+        </section> -->
+        <!-- <section>
             <h3></h3>
 					<pre><code data-trim>
 interface Person {
@@ -727,8 +924,8 @@ interface Person {
             <aside class="notes">
                 Interfaces are structural, anything that has the properties is compliant with the interface.
             </aside>
-        </section>
-        <section>
+        </section> -->
+        <!-- <section>
             <h3></h3>
 					<pre><code data-trim>
 this.project: Project = {
@@ -750,10 +947,10 @@ this.project: Project = {
             <aside class="notes">
 
             </aside>
-        </section>
+        </section> -->
 
 
-        <section>
+        <!-- <section>
             <h3></h3>
 					<pre><code data-trim>
 var PROJECTS: Project[] = [
@@ -768,9 +965,9 @@ var PROJECTS: Project[] = [
             <aside class="notes">
                 Interfaces are structural, anything that has the properties is compliant with the interface.
             </aside>
-        </section>
+        </section> -->
 
-        <section>
+        <!-- <section>
             <h3>Add new projects to our list</h3>
 					<pre><code data-trim>
 <form (submit)="onSubmit(projectName.value)">
@@ -795,7 +992,7 @@ var PROJECTS: Project[] = [
             <aside class="notes">
 
             </aside>
-        </section>
+        </section> -->
 
 
 
@@ -804,6 +1001,9 @@ var PROJECTS: Project[] = [
         <section>
             <h3>Services</h3>
 					<pre><code data-trim>
+import { Injectable } from '@angular/core';
+
+@Injectable()
 export class DataService(){
  return [...];
 }
@@ -815,6 +1015,7 @@ export class DataService(){
 
             </aside>
         </section>
+
         <!-- DI -->
         <section>
             <h3>Dependency Injections</h3>
@@ -838,7 +1039,7 @@ class PostList {
                 constructor.
             </aside>
         </section>
-        <section>
+        <!-- <section>
             <h3>Step - 5</h3>
             <ul>
                 <li class="fragment">Add promises to our service</li>
@@ -849,19 +1050,21 @@ class PostList {
             <aside class="notes">
 
             </aside>
-        </section>
+        </section> -->
         <!-- Routing -->
         <section>
             <h3>Routing</h3>
-                    <pre><code data-trim>
+                    <!-- <pre><code data-trim>
 &lt;head>
   &lt;script src="node_modules/angular2/bundles/router.dev.js">&lt;/script>
 &lt;/head>
 &lt;base href="/">
-                    </code></pre>
+                    </code></pre> -->
 
 					<pre><code data-trim>
-import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
+import { provideRouter, RouterConfig }  from '@angular/router';
+import { HomeComponent, ListComponent } fromt './..';
+
                     </code></pre>
             <p><a href="" target="_blank"></a></p>
             <aside class="notes">
@@ -876,12 +1079,27 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/route
         <section>
             <h3>Route config</h3>
 					<pre><code data-trim>
-                        import {HomeComponent, ProjectListComponent, ProjectDetailComponent}
-                        @RouteConfig([
-                        {path:'/home', name: 'Home', component: HomeComponent, useAsDefault: true},
-                        {path:'/projects',        name: 'Projects',       component: ProjectListComponent},
-                        {path:'/project/:id',      name: 'ProjectDetail',   component: ProjectDetailComponent}
-                        ])
+import { provideRouter, RouterConfig }  from '@angular/router';
+const routes: RouterConfig = [
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    component: HomeComponent
+},
+{
+  path: 'about',
+  component: AboutComponent
+}
+];
+
+export const appRouterProviders = [
+  provideRouter(routes)
+];
+
                     </code></pre>
             <p><a href="" target="_blank"></a></p>
             <aside class="notes">
@@ -891,18 +1109,20 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/route
         <section>
             <h3></h3>
 					<pre><code data-trim>
+import { ROUTER_DIRECTIVES } from '@angular/router';
 <nav>
- <a [routerLink]="['Home']">Home</a>
+ <a [routerLink]="['/home']">Home</a>
+ <a [routerLink]="['/about']">About</a>
 </nav>
 <router-outlet></router-outlet>
                     </code></pre>
-            <p><a href="" target="_blank"></a></p>
+            <p><a href="http://plnkr.co/edit/?p=preview" target="_blank">Plunker</a></p>
             <aside class="notes">
                 next to routerInjectables, there are other components that the router module exports. One of them is the
                 RouteConfig class which can be used to decorate a component with routing capabilities.
             </aside>
         </section>
-        <section>
+        <!-- <section>
             <h3></h3>
 					<pre><code data-trim>
 <nav class="main-nav">
@@ -911,9 +1131,9 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/route
     <a [router-link]="['/todo']">Todo</a>
 </nav>
                     </code></pre>
-        </section>
+        </section> -->
 
-        <section>
+        <!-- <section>
             <h3>Step - 6</h3>
             <ul>
                 <li class="fragment">Route Params</li>
@@ -922,9 +1142,9 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/route
             <aside class="notes">
 
             </aside>
-        </section>
+        </section> -->
 
-        <section>
+        <!-- <section>
             <h3>Step - 7</h3>
             <ul>
                 <li class="fragment">Emitting Events</li>
@@ -935,7 +1155,7 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/route
             <aside class="notes">
 
             </aside>
-        </section>
+        </section> -->
         <section>
             <h3></h3>
 					<pre><code data-trim>
@@ -1013,7 +1233,7 @@ export class PeopleComponent {
                 https://angular.io/docs/js/latest/api/http/Http-class.html
             </aside>
         </section>
-	
+
 	<section>
 		<h2>Pipes</h2>
 		<p><a href="http://yonet.github.io/ng-conf-pipes/" target="_blank">Slides</a></p>
@@ -1054,6 +1274,13 @@ export class PeopleComponent {
 
             </aside>
         </section> -->
+        <section>
+            <h2>Additional resources</h2>
+            <ul>
+                <li class="fragment" ><a href="http://www.learnrxjs.io/" target='_blank'>Learn RxJs</a></li>
+                <li class="fragment" ><a href="http://rxmarbles.com/" target='_blank'>Rx Marbles</a></li>
+            </ul>
+        </section>
 
 
         <!-- The End -->

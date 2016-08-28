@@ -74,8 +74,7 @@
                     </p>
                 </li>
                 <li><a href="https://github.com/angular/angular-cli#installation" target="_blank">npm install -g angular-cli</a></li>
-                <!-- <li><a href="https://github.com/DefinitelyTyped/tsd" target="_blank">npm install tsd -g</a></li> -->
-                <!--<li>http server: npm install -g http-server</li>-->
+               
             </ul>
             <aside class="notes">
 
@@ -123,6 +122,7 @@
                 <li class="fragment">Faster change detection</li>
                 <li class="fragment">Modular</li>
                 <li class="fragment">Simplified APIs</li>
+                <li class="fragment">Flexible router</li>
                 <li class="fragment">Better integration with external libraries with <a
                         href="https://www.youtube.com/watch?v=3IqtmUscE_U" target="_blank">Zone.js</a></li>
             </ul>
@@ -135,34 +135,33 @@
             </aside>
         </section>
         <!-- /intro -->
+<!--        <section>-->
+<!--            <h3>TypeScript definition files</h3>-->
+<!--		<pre><code data-trim>-->
+<!--npm install -g tsd-->
+<!--tsd install angular2 es6-promise rx rx-lite-->
+<!--                </code></pre>-->
+<!--					<pre><code data-trim>-->
+<!--touch app.ts index.html-->
+<!--                    </code></pre>-->
+<!--            <p><a href="https://github.com/Microsoft/TypeScript-Sublime-Plugin" target="_blank">Sublime Package</a></p>-->
+<!--            <aside class="notes">-->
+<!--                Get the type definition files. Create an app.js and index.html files on the same root. Note that you can-->
+<!--                save any js file with the ts extention and it will work.-->
+<!--            </aside>-->
+<!--        </section>-->
         <section>
-            <h3>TypeScript definition files</h3>
-					<pre><code data-trim>
-npm install -g tsd
-tsd install angular2 es6-promise rx rx-lite
-                    </code></pre>
-					<pre><code data-trim>
-touch app.ts index.html
-                    </code></pre>
-            <p><a href="https://github.com/Microsoft/TypeScript-Sublime-Plugin" target="_blank">Sublime Package</a></p>
-            <aside class="notes">
-                Get the type definition files. Create an app.js and index.html files on the same root. Note that you can
-                save any js file with the ts extention and it will work.
-            </aside>
-        </section>
-        <section>
-            <h4>TypeScript compiler</h4>
-					<pre><code data-trim>
+        	<h4>TypeScript compiler</h4>
+		<pre><code data-trim>
 npm install -g typescript
 npm install -g angular-cli@latest
-                    </code></pre>
+                </code></pre>
             <p><a href="" target="_blank"></a></p>
             <aside class="notes">
                 Install the compiler and watch for changes to compile your ts code to JS.
             </aside>
         </section>
         <section>
-
             <p><a href="http://www.typescriptlang.org/Playground" target="_blank">TypeScript Playground</a></p>
             <aside class="notes">
                 You don't have to use everything in TS. if you put public in front of a variable you don't have to bind
@@ -170,86 +169,76 @@ npm install -g angular-cli@latest
             </aside>
         </section>
         <section>
-            <h3>3 basic types in TypeScript</h3>
-					<pre><code data-trim>
+        	<h3>3 basic types in TypeScript</h3>
+		<pre><code data-trim>
 var isDone: boolean = false;
 var lines: number = 42;
 var name: string = "Aysegul";
-                    </code></pre>
-            <p><a href="" target="_blank"></a></p>
-            <aside class="notes">
-
-            </aside>
+                </code></pre>
+        	<p><a href="" target="_blank"></a></p>
+        	<aside class="notes">
+            	</aside>
         </section>
         <section>
-					<pre><code data-trim>
+		<pre><code data-trim>
 var notSure: any = 4;
 notSure = "maybe a string instead";
 notSure = false;
-                    </code></pre>
-            <p><a href="" target="_blank"></a></p>
-            <aside class="notes">
+                </code></pre>
+		<p><a href="" target="_blank"></a></p>
+		<aside class="notes">
 
-            </aside>
+		</aside>
         </section>
 
         <section>
-            <h3></h3>
-					<pre><code data-trim>
+		<h3></h3>
+		<pre><code data-trim>
 // For collections, there are typed arrays and generic arrays
 let list: number[] = [1, 2, 3];
 // Alternatively, using the generic array type
 let list: Array&lt;number> = [1, 2, 3];
 let projects: ProjectType[] =
-
-                    </code></pre>
-            <aside class="notes">
-
-            </aside>
+		</code></pre>
+		<aside class="notes"></aside>
         </section>
         <section>
-            <pre><code data-trim>
+		<pre><code data-trim>
 export class ProjectType {
     id: number;
     name: string;
     url: string;
 }
-
-            </code></pre>
-            <p><a href="" target="_blank"></a></p>
-            <aside class="notes">
-
-            </aside>
+		</code></pre>
+		<p><a href="" target="_blank"></a></p>
+		<aside class="notes"></aside>
         </section>
         <section>
-            <h3></h3>
-                    <pre><code data-trim>
+		<h3></h3>
+		<pre><code data-trim>
 
 let projects: ProjectType[] = [
     {id: 1, name: 'Demo project', url: '...'}
 ]
 
-                    </code></pre>
-            <aside class="notes">
-
-            </aside>
+		</code></pre>
+		<aside class="notes">
+		</aside>
         </section>
         <section>
-            <h3></h3>
-					<pre><code data-trim>
+		<h3></h3>
+		<pre><code data-trim>
 // "void" is used in the special case of a function returning nothing
 function bigHorribleAlert(): void {
   alert("I'm a little annoying box!");
 }
-                    </code></pre>
-            <p><a href="" target="_blank"></a></p>
-            <aside class="notes">
-
-            </aside>
+		</code></pre>
+		<p><a href="" target="_blank"></a></p>
+		<aside class="notes"></aside>
         </section>
         <section>
-            <h3></h3>
-					<pre><code data-trim>
+		<h3></h3>
+		<pre><code data-trim>
 var f1 = function(i: number): number { return i * i; }
 // Return type inferred
 var f2 = function(i: number) { return i * i; }
@@ -259,31 +248,29 @@ var f4 = (i: number) => { return i * i; }
 // Return type inferred, one-liner means no return keyword needed
 var f5 = (i: number) => i * i;
 
-                    </code></pre>
-            <p><a href="" target="_blank"></a></p>
-            <aside class="notes">
+		</code></pre>
+		<p><a href="" target="_blank"></a></p>
+		<aside class="notes">
                 Functions are first class citizens, support the lambda "fat arrow" syntax and use type inference.The
                 following are equivalent, the same signature will be infered by the compiler, and same JavaScript will
                 be emitted.
-            </aside>
+                </aside>
         </section>
 
         <!-- Data Binding -->
         <section>
-
             <section>
                 <h3>Data Binding</h3>
-						<pre><code data-trim contenteditable>
-                            <!-- Interpolation -->
+		<pre><code data-trim contenteditable>
+ <!-- Interpolation -->
 <div>Hello, {{name}}!</div>
-						</pre>
-                </code>
+		</pre></code>
                 <aside class="notes">
 
                 </aside>
             </section>
             <section>
-				<pre><code data-trim contenteditable>
+		<pre><code data-trim contenteditable>
 function chartDirective () {
   return {
     restrict: ‘E’,
@@ -295,13 +282,13 @@ function chartDirective () {
 };
 
 function link () {}
-				</pre></code>
+		</pre></code>
                 <aside class="notes">
 
                 </aside>
-            </section>
-            <section>
-				<pre><code data-trim contenteditable>
+	</section>
+	<section>
+		<pre><code data-trim contenteditable>
 function chartDirective () {
   return {
     restrict: ‘E’,
@@ -314,17 +301,15 @@ function chartDirective () {
 };
 
 function link () {}
-				</pre></code>
+		</pre></code>
                 <pre><code data-trim contenteditable>
 <chart data="parentData"></chart>
                 </code></pre>
 
-                <aside class="notes">
+                <aside class="notes"></aside>
+	</section>
 
-                </aside>
-            </section>
-
-            <section>
+	<section>
                 <h3></h3>
                 <img src="images/dataBinding.png" alt="data binding flow">
 
@@ -334,27 +319,24 @@ function link () {}
                     Property and event bindings are the public API of a component. You use them when you instantiate a
                     component in your application.
                 </aside>
-            </section>
+	</section>
 
-            <section>
+	<section>
                 <h2>Property binding</h2>
-						<pre><code data-trim contenteditable>
+		<pre><code data-trim contenteditable>
 <!-- Property Binding -->
 <chart [data]="parentData"></chart>
 <div [hidden]="hideMessage">I am a message</div>
-                        </code></pre>
+		</code></pre>
                 <a href="" target="_blank"></a>
-                <aside class="notes">
-
-                </aside>
-
-            </section>
-            <section>
+                <aside class="notes"> </aside>
+	</section>
+	<section>
                 <h3>Event binding</h3>
-						<pre><code data-trim >
-                            <!-- Event Binding -->
+		<pre><code data-trim >
+ <!-- Event Binding -->
 <button (click)="doStuff()">Do Stuff</button>
-                        </code></pre>
+		</code></pre>
 
                 <p><a href="http://plnkr.co/edit/kCpFBnQPAvOj15GwQD7W?p=preview" target="_blank">Plunker</a></p>
                 <aside class="notes">
@@ -363,19 +345,18 @@ function link () {}
                     This means any public DOM event or property can be bound to with no additional coding!
 
                 </aside>
-            </section>
-            <section>
-            <h3>Two way data binding - not really!</h3>
-            <pre><code data-trim>
+	</section>
+	<section>
+		<h3>Two way data binding - not really!</h3>
+		<pre><code data-trim>
 <input [(ngModel)]="message" placeholder="message">
-            </code></pre>
-            <p><a href="http://plnkr.co/edit/k5chGN?p=preview" target="_blank">Plunker</a></p>
-            <aside class="notes">
+		</code></pre>
+		<p><a href="http://plnkr.co/edit/k5chGN?p=preview" target="_blank">Plunker</a></p>
+		<aside class="notes">
             $event is the first argument.
-            </aside>
-            </section>
-
-            <section>
+		</aside>
+	</section>
+	<section>
                 <h3>Local variable</h3>
                 <pre><code data-trim>
 <input type="text" #ref>
@@ -385,7 +366,7 @@ function link () {}
                 <aside class="notes">
                     # creates a local variable. ref refers to the node itself.
                 </aside>
-            </section>
+	</section>
 
             <!--<section>-->
                 <!--<h3></h3>-->
@@ -404,12 +385,12 @@ function link () {}
 
             <section>
                 <h3></h3>
-						<pre><code data-trim>
-                            <!-- Template Binding (ng-for, ng-if, etc...) -->
+		<pre><code data-trim>
+<!-- Template Binding (ng-for, ng-if, etc...) -->
 <ul>
   <li *ngFor="let message of messages">{{message}}</li>
 </ul>
-                        </code></pre>
+		</code></pre>
                 <p><a href="https://vsavkin.com/angular-2-template-syntax-5f2ee9f13c6a#.kfk7qrltv" target="_blank">Read
                     more!</a></p>
                 <!--<p><a href="https://youtu.be/aHGmj_fqPLE?t=26m10s" target="_blank">Watch!</a></p>-->
@@ -417,7 +398,7 @@ function link () {}
                     ngFor is camelcase
 
                 </aside>
-            </section>
+	</section>
         </section>
         <!--<section>-->
             <!--<h3>Two way binding</h3>-->
@@ -443,8 +424,8 @@ function link () {}
         <!--</section>-->
         <!-- TODO 2 way binding example-->
         <section>
-            <h3>Recap</h3>
-            <ul>
+		<h3>Recap</h3>
+		<ul>
                 <li class="fragment">[Property] and (event) bindings are the public API of a directive.</li>
                 <li class="fragment">Data flows into a directive via property bindings.</li>
                 <li class="fragment">Data flows out of a directive via event bindings.</li>
@@ -452,24 +433,22 @@ function link () {}
                 <li class="fragment">Angular provides syntax sugar for two-way bindings, interpolation, and passing
                     constants.
                 </li>
-            </ul>
+		</ul>
 
-            <aside class="notes">
-
-            </aside>
+		<aside class="notes"></aside>
         </section>
         <section>
-            <h2>Exercise</h2>
-            <p>
-                <a href="http://plnkr.co/edit/6LUg2lVj9kAP6cRUSxTj?p=preview" target="_blank">Plunker</a>
-            </p>
-            <ul>
-                <li class="fragment">Open plunker editor</li>
-                <li class="fragment">Create a list of projects</li>
-                <li class="fragment">Repeat the projects using *ngFor</li>
-                <li class="fragment">Create a click event on repeated project to select the clicked item</li>
-                <li class="fragment">Add an input field to add new projects</li>
-            </ul>
+		<h2>Exercise</h2>
+		<p>
+                	<a href="http://plnkr.co/edit/6LUg2lVj9kAP6cRUSxTj?p=preview" target="_blank">Plunker</a>
+		</p>
+		<ul>
+                	<li class="fragment">Open plunker editor</li>
+                	<li class="fragment">Create a list of projects</li>
+                	<li class="fragment">Repeat the projects using *ngFor</li>
+                	<li class="fragment">Create a click event on repeated project to select the clicked item</li>
+                	<li class="fragment">Add an input field to add new projects</li>
+		</ul>
         </section>
         <!-- /Data binding -->
 
@@ -482,65 +461,61 @@ function link () {}
 
         <!-- Angular 2 with ES6 -->
         <section>
-            <h3>ES6 module syntax</h3>
-					<pre><code data-trim>
+		<h3>ES6 module syntax</h3>
+		<pre><code data-trim>
 //lib.js
 export function square(x) {
  return x * x;
 }
 // main.js
 import { square } from 'lib';
-                    </code></pre>
-            <p><a href="" target="_blank"></a></p>
-            <aside class="notes">
-
-            </aside>
+		</code></pre>
+		<p><a href="" target="_blank"></a></p>
+		<aside class="notes"></aside>
         </section>
         <section>
-            <h3>ES6 module syntax</h3>
-					<pre><code data-trim>
+		<h3>ES6 module syntax</h3>
+		<pre><code data-trim>
 //lib.js
 export class Math{
   this.square(){}
 }
 // main.js
 import { Math } from 'lib';
-                    </code></pre>
-            <p><a href="" target="_blank"></a></p>
-            <aside class="notes">
-
-            </aside>
+		</code></pre>
+		<p><a href="" target="_blank"></a></p>
+		<aside class="notes"></aside>
         </section>
         <section>
-            <h3>Bootstrapping</h3>
-					<pre><code data-trim>
-                        //main.ts
+		<h3>Bootstrapping</h3>
+		<pre><code data-trim>
+//main.ts
 import {bootstrap} from 'angular2/platform/browser';
 import {AppComponent} from './app.component';
 
 bootstrap(AppComponent, []);
-                    </code></pre>
-            <p><a href="" target="_blank"></a></p>
-            <aside class="notes">
+		</code></pre>
+		<p><a href="" target="_blank"></a></p>
+		<aside class="notes">
                 <!--The main difference between the ES5 and TypeScript versions is the loading of modules.-->
-            </aside>
+		</aside>
         </section>
         <section>
-            <h3>Bootstrapping in ES 5</h3>
-					<pre><code data-trim>
+		<h3>Bootstrapping in ES 5</h3>
+		<pre><code data-trim>
 document.addEventListener('DOMContentLoaded', function () {
   ng.platform.browser.bootstrap(MyAppComponent, [MyService, ng.core.provide(...)]);
 });
-                    </code></pre>
-            <p><a href="" target="_blank"></a></p>
-            <aside class="notes">
+		</code></pre>
+		<p><a href="" target="_blank"></a></p>
+		<aside class="notes">
                 <!--The main difference between the ES5 and TypeScript versions is the loading of modules.-->
-            </aside>
+		</aside>
         </section>
 
         <section>
             <h3>Annotations</h3>
-					<pre><code data-trim>
+<pre><code data-trim>
 @Component({
     selector: 'post-list'
 })

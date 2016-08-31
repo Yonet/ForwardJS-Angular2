@@ -546,20 +546,20 @@ document.addEventListener('DOMContentLoaded', function () {
             </aside>
         </section>
         <section>
-            <h3>Components</h3>
-					<pre><code data-trim>
+        	<h3>Components</h3>
+		<pre><code data-trim>
 <todo-list></todo-list>
 <time-picker></time-picker>
-                    </code></pre>
-            <p><a href="" target="_blank"></a></p>
-            <aside class="notes">
+        	</code></pre>
+        	<p><a href="" target="_blank"></a></p>
+        	<aside class="notes">
                 Components are small reusable pieces of our UI, so that we can create a whole app without repeating our
                 code.
-            </aside>
+      		</aside>
         </section>
         <section>
-            <h3></h3>
-					<pre><code data-trim>
+       		<h3></h3>
+		<pre><code data-trim>
 @Component({
   selector: 'catstagram',
 })
@@ -569,7 +569,7 @@ export Class Catstagram {
   this.posts = [];
  }
 }
-                    </code></pre>
+                </code></pre>
             <!--<p><a href="https://github.com/Yonet/tsExample/tree/step-0" target="_blank">Plunker</a></p>-->
             <aside class="notes">
                 Declare reusable UI building blocks for an application.
@@ -584,8 +584,7 @@ export Class Catstagram {
             </aside>
         </section>
         <section>
-            <h3></h3>
-					<pre><code data-trim>
+		<pre><code data-trim>
 @Component({
  selector: 'catstagram',
  templateUrl:'posts.html'
@@ -596,14 +595,12 @@ export Class Catstagram {
    this.posts = [];
  }
 }
-                    </code></pre>
-            <aside class="notes">
-
-            </aside>
+                </code></pre>
+        	<aside class="notes"></aside>
         </section>
         <section>
-            <h3></h3>
-					<pre><code data-trim>
+       		<h3></h3>
+		<pre><code data-trim>
 @Component({
  selector: 'catstagram',
  templateUrl:'posts.html',
@@ -614,15 +611,13 @@ export Class Catstagram {
     this.posts = [];
   }
 }
-                    </code></pre>
+        	</code></pre>
             <!--<p><a href="https://github.com/Yonet/tsExample/tree/step-0" target="_blank">Plunker</a></p>-->
-            <aside class="notes">
-
-            </aside>
+       <aside class="notes"></aside>
         </section>
         <section>
             <h3></h3>
-					<pre><code data-trim>
+	<pre><code data-trim>
 angular
   .module('app')
   .directive('catstagram', catstagramComponent);
@@ -646,8 +641,8 @@ angular
             </aside>
         </section>
         <section>
-            <h3></h3>
-					<pre><code data-trim>
+        	<h3></h3>
+		<pre><code data-trim>
 angular
   .module('app')
   .directive('catstagram', catstagramComponent);
@@ -666,15 +661,15 @@ angular
       function createComponent () {}
       function catController (){...}
 }
-                    </code></pre>
+        	</code></pre>
             <!--<p><a href="https://github.com/Yonet/tsExample/tree/step-0" target="_blank">Plunker</a></p>-->
             <aside class="notes">
 
             </aside>
         </section>
         <section>
-            <h3></h3>
-					<pre><code data-trim>
+        	<h3></h3>
+		<pre><code data-trim>
 @Component({
   selector: 'catstagram',
   templateUrl:'posts.html',
@@ -686,7 +681,7 @@ export Class Catstagram {
   this.posts = this.data;
  }
 }
-                    </code></pre>
+        	</code></pre>
             <!--<p><a href="https://github.com/Yonet/tsExample/tree/step-0" target="_blank">Plunker</a></p>-->
             <aside class="notes">
 
@@ -758,8 +753,8 @@ ng new forward5-app --style=sass
             </aside>
         </section>
         <section>
-            <h3>Step - 1</h3>
-            <pre><code data-trim contenteditable>
+        	<h3>Step - 1</h3>
+       		<pre><code data-trim contenteditable>
 ng g component lists
             </code></pre>
             <!--<a href="https://github.com/Yonet/ng2-forwardJS-app" target="_blank">Github</a>-->
@@ -805,11 +800,11 @@ ng g component lists
         </section>
 
         <section>
-            <h2>@Input</h2>
-            <pre><code data-trim>
+        	<h2>@Input</h2>
+        	<pre><code data-trim>
 <child [data]="dataValue"></child>
-            </code></pre>
-            <pre><code data-trim>
+        	</code></pre>
+        	<pre><code data-trim>
 @Component({
     selector:'child',
     template:'<p>{{data}}</p>'
@@ -817,7 +812,7 @@ ng g component lists
 export class ChildComponent {
     @Input() data;
 }
-            </code></pre>
+        	</code></pre>
             <aside class="notes">
                 if data is primitive, when it changes the change detection runs
                 if it is a reference, array, object,..., it will only run when the reference changes
@@ -839,7 +834,7 @@ export class ParentComponent {
         console.log('Event fired',ev);
     }
 }
-            </code></pre>
+        	</code></pre>
             <aside class="notes">
                 if data is primitive, when it changes the change detection runs
                 if it is a reference, array, object,..., it will only run when the reference changes
